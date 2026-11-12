@@ -48,11 +48,11 @@ export default function BranchLocator() {
       <div className="wrap">
         <SectionHeader
           align="split"
-          kicker={["37 branches", "37 கிளைகள்"]}
-          title={["Find your nearest branch", "உங்கள் அருகிலுள்ள கிளையைக் கண்டறியுங்கள்"]}
+          kicker={["37 branches", "உங்களுக்கு அருகிலுள்ள RJR கிளை"]}
+          title={["Find your nearest branch", "உங்கள் அருகிலேயே RJR மருத்துவப் பராமரிப்பு."]}
           sub={[
             "Tap a pin on the map and the branch details appear on the right.",
-            "வரைபடத்தில் உள்ள குறியைத் தொட்டால், வலப்புறம் அந்தக் கிளையின் விவரங்கள் தெரியும்.",
+            "தமிழ்நாடு முழுவதும் 37 கிளைகளில் உங்களுக்கு அருகிலுள்ள கிளையைக் கண்டறியுங்கள்.",
           ]}
         />
         <div className="grid gap-5 min-[860px]:grid-cols-[1.6fr_1fr] min-[860px]:items-stretch">

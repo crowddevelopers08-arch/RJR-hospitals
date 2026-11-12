@@ -22,6 +22,7 @@ export default function SectionHeader({
   const { t } = useLang();
   const dark = tone === "dark";
   const center = align === "center";
+  const subText = sub ? t(...sub) : "";
 
   return (
     <header
@@ -47,13 +48,13 @@ export default function SectionHeader({
           {t(...title)}
         </h2>
       </div>
-      {sub && (
+      {subText && (
         <p
           className={`m-0 max-w-[600px] text-[1.1rem] leading-[1.7] min-[860px]:text-[1.2rem] ${center ? "mx-auto mt-3 min-[640px]:mt-4" : align === "split" ? "" : "mt-3 min-[640px]:mt-4"} ${
             dark ? "text-white/80" : "text-muted"
           }`}
         >
-          {t(...sub)}
+          {subText}
         </p>
       )}
     </header>

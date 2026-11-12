@@ -2,7 +2,6 @@ import { BookingProvider } from "@/lib/booking";
 import { LanguageProvider } from "@/lib/i18n";
 import TopBar from "@/components/TopBar";
 import Header from "@/components/Header";
-import BannerSlider from "@/components/BannerSlider";
 import Hero from "@/components/Hero";
 import Stats from "@/components/Stats";
 import MythFacts from "@/components/MythFacts";
@@ -25,7 +24,6 @@ export default function Home() {
         <TopBar />
         <Header />
         <main id="top">
-          <BannerSlider />
           <Hero />
           <Stats />
           <MythFacts />

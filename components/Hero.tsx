@@ -4,9 +4,9 @@ import { useLang } from "@/lib/i18n";
 import LeadForm from "./LeadForm";
 
 const POINTS: [string, string][] = [
-  ["37 branches across Tamil Nadu", "37 கிளைகள், தமிழ்நாடு முழுவதும்"],
-  ["Examination by degree-qualified doctors", "பட்டம் பெற்ற மருத்துவர்களின் பரிசோதனை"],
-  ["No admission needed for the first consultation", "முதல் ஆலோசனையில் சேர வேண்டிய அவசியமில்லை"],
+  ["37 branches across Tamil Nadu.", "தமிழ்நாடு முழுவதும் 37 கிளைகள்."],
+  ["Consultations with qualified Ayurveda and Siddha doctors.", "தகுதிபெற்ற ஆயுர்வேத மற்றும் சித்த மருத்துவர்கள்."],
+  ["Individual-based customised treatment and medication plan.", "உங்கள் உடல்நிலைக்கு ஏற்ற தனிப்பட்ட சிகிச்சைத் திட்டம்."],
 ];
 
 /* The page's one orchestrated moment: the hero message settles in line by line, then the form.
@@ -17,49 +17,56 @@ export default function Hero() {
   const { t } = useLang();
 
   return (
-    <section id="book" className="relative isolate overflow-hidden bg-crimson-dk pt-8 pb-[100px] text-white min-[640px]:pt-12 min-[640px]:pb-[132px] min-[860px]:pt-20 min-[860px]:pb-[168px]">
+    <section id="book" className="relative isolate overflow-hidden bg-crimson-dk pt-6 pb-[100px] text-white min-[640px]:pt-9 min-[640px]:pb-[132px] min-[860px]:pt-12 min-[860px]:pb-[168px]">
       {/* fine gold line along the foot of the hero */}
       <div aria-hidden="true" className="absolute inset-x-0 bottom-0 z-[1] h-px bg-[linear-gradient(90deg,transparent,rgba(253,207,59,.55),transparent)]" />
 
       <div className="wrap relative z-[2] grid items-center gap-7 min-[640px]:gap-10 min-[960px]:grid-cols-[minmax(0,1fr)_minmax(0,520px)] min-[960px]:gap-14">
-        <div>
+        {/* min-w-0 keeps the wide marquee row from stretching this column past the screen */}
+        <div className="min-w-0">
           <p
             className="motion-safe:animate-rise mt-0 mb-4 min-[640px]:mb-6 inline-flex items-center gap-3 rounded-full border border-solid border-gold/40 bg-white/[.06] py-1.5 pr-4 pl-1.5 text-[.85rem] font-medium text-gold backdrop-blur-sm"
           >
             <span aria-hidden="true" className="grid h-7 w-7 place-items-center rounded-full bg-gold text-[.8rem] font-bold text-kumkum">
               5
             </span>
-            {t("5 generations · 150+ years of practice", "5 தலைமுறைகள் · 150+ ஆண்டு அனுபவம்")}
+            {t("5 generations · 150+ years of practice", "5 தலைமுறைகள் | 150+ ஆண்டுகால மருத்துவப் பாரம்பரியம்")}
           </p>
 
           <h1 style={{ animationDelay: "80ms" }}
             className="motion-safe:animate-rise display m-0 max-w-[18ch] text-[clamp(2.1rem,5vw,3.6rem)] font-bold text-white">
             {t(
-              "Ayurveda is also science. Start with a doctor, not as a last resort.",
-              "ஆயுர்வேதமும் அறிவியலே. கடைசி வழியாக அல்ல, முதலிலேயே மருத்துவரை அணுகுங்கள்."
+              "Treat Your Health with Ayurveda Before You Run Out of Options.",
+              "கடைசி முயற்சியாக அல்ல, முதல் தேர்வாக ஆயுர்வேதத்தை அணுகுங்கள்."
             )}
           </h1>
 
-          <p style={{ animationDelay: "160ms" }}
-            className="motion-safe:animate-rise mt-4 mb-0 max-w-[52ch] min-[640px]:mt-6 text-[1.06rem] leading-[1.75] text-white/85 min-[860px]:text-[1.12rem]">
-            {t(
-              "Qualified Ayurveda and Siddha doctors examine you, read your reports, and explain your plan in simple words.",
-              "தகுதி பெற்ற ஆயுர்வேத, சித்த மருத்துவர்கள் உங்களைப் பரிசோதித்து, உங்கள் ரிப்போர்ட்களைப் பார்த்து, உங்களுக்கான திட்டத்தை எளிய தமிழில் விளக்குவார்கள்."
-            )}
-          </p>
-
-          <ul style={{ animationDelay: "260ms" }}
-            className="motion-safe:animate-rise mt-5 mb-0 grid list-none gap-2.5 p-0 min-[640px]:mt-8 min-[640px]:gap-3 text-[.98rem] font-medium">
-            {POINTS.map(([en, ta]) => (
-              <li key={en} className="flex items-start gap-3">
-                <svg viewBox="0 0 20 20" aria-hidden="true" className="mt-[3px] h-5 w-5 flex-none text-gold">
-                  <circle cx="10" cy="10" r="9.25" fill="none" stroke="currentColor" strokeOpacity=".5" />
-                  <path d="M6 10.4l2.6 2.6L14 7.6" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-                <span className="text-white/95">{t(en, ta)}</span>
-              </li>
-            ))}
-          </ul>
+          {/* key points scroll past in one row like a marquee; the list is rendered twice so the loop is seamless.
+              Pauses on hover; with reduced motion it becomes a static wrapped row. */}
+          <div
+            style={{ animationDelay: "260ms" }}
+            className="group motion-safe:animate-rise mt-6 overflow-hidden [mask-image:linear-gradient(90deg,transparent,#000_8%,#000_92%,transparent)] min-[640px]:mt-8"
+          >
+            <div className="flex w-max motion-safe:animate-marquee group-hover:[animation-play-state:paused] motion-reduce:w-auto motion-reduce:flex-wrap">
+              {[0, 1].map((copy) => (
+                <ul
+                  key={copy}
+                  aria-hidden={copy === 1 || undefined}
+                  className={`m-0 flex list-none gap-8 p-0 pr-8 text-[.98rem] font-medium ${copy === 1 ? "motion-reduce:hidden" : "motion-reduce:flex-wrap motion-reduce:gap-y-2.5"}`}
+                >
+                  {POINTS.map(([en, ta]) => (
+                    <li key={en} className="flex flex-none items-center gap-2.5 whitespace-nowrap">
+                      <svg viewBox="0 0 20 20" aria-hidden="true" className="h-5 w-5 flex-none text-gold">
+                        <circle cx="10" cy="10" r="9.25" fill="none" stroke="currentColor" strokeOpacity=".5" />
+                        <path d="M6 10.4l2.6 2.6L14 7.6" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                      <span className="text-white/95">{t(en, ta)}</span>
+                    </li>
+                  ))}
+                </ul>
+              ))}
+            </div>
+          </div>
         </div>
 
         <div {...rise(380)} className="w-full motion-safe:animate-rise min-[960px]:max-w-[520px] min-[960px]:justify-self-end">

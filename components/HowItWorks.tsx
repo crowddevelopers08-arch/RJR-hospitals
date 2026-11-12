@@ -6,24 +6,24 @@ import SectionHeader from "./ui/SectionHeader";
 
 const STEPS: { h: [string, string]; p: [string, string] }[] = [
   {
-    h: ["Examination and report review", "பரிசோதனை மற்றும் ரிப்போர்ட் ஆய்வு"],
+    h: ["Personalised Medical Assessment", "மருத்துவப் பரிசோதனை"],
     p: [
-      "Bring any X-ray, MRI or blood reports you have; the doctor reads them with you.",
-      "உங்கள் X-ray, MRI, இரத்தப் பரிசோதனை ரிப்போர்ட்கள் இருந்தால் கொண்டு வாருங்கள்.",
+      "Our doctor understand your symptoms, medical history and health concerns before considering the treatment.",
+      "உங்கள் அறிகுறிகள் மற்றும் மருத்துவ வரலாற்றை மருத்துவர் கேட்டறிந்து பரிசோதிப்பார்.",
     ],
   },
   {
-    h: ["Your personal plan", "உங்களுக்கான திட்டம்"],
+    h: ["Clear Treatment Guidance", "சிகிச்சை வழிகாட்டுதல்"],
     p: [
-      "The doctor explains which Ayurveda or Siddha approach suits you, and what to expect.",
-      "உங்களுக்கு எந்த ஆயுர்வேத அல்லது சித்த அணுகுமுறை பொருந்தும் என்பதை மருத்துவர் விளக்குவார்.",
+      "Based on the examination, our doctor explains the suitable Ayurveda or Siddha treatment and what to expect.",
+      "உங்கள் உடல்நிலைக்கு ஏற்ற ஆயுர்வேத அல்லது சித்த மருத்துவ முறைகளை விளக்குவார்.",
     ],
   },
   {
-    h: ["Therapy and follow-up", "சிகிச்சை மற்றும் தொடர் கவனிப்பு"],
+    h: ["Continued Care & Follow-up", "தொடர் மருத்துவப் பராமரிப்பு"],
     p: [
-      "Medicines, therapies and follow-up visits, at the branch nearest to you.",
-      "மருந்துகள், சிகிச்சைகள் மற்றும் தொடர் ஆலோசனை உங்கள் அருகிலுள்ள கிளையிலேயே.",
+      "Our doctor guides you through recommended medicines, therapies and follow-up visits as needed.",
+      "மருந்துகள், சிகிச்சைகள் மற்றும் தொடர் ஆலோசனைகள் மூலம் வழிகாட்டுவார்.",
     ],
   },
 ];
@@ -36,12 +36,9 @@ export default function HowItWorks() {
       <div className="wrap">
         <SectionHeader
           align="center"
-          kicker={["Simple process", "எளிய செயல்முறை"]}
-          title={["How your consultation works", "ஆலோசனை எப்படி நடக்கிறது"]}
-          sub={[
-            "Three simple steps. At your first visit the doctor listens, examines, and explains.",
-            "மூன்று எளிய படிகள். முதல் சந்திப்பில் நீங்கள் பேசுவீர்கள், மருத்துவர் கேட்பார், பார்ப்பார், விளக்குவார்.",
-          ]}
+          kicker={["How your consultation works", "உங்கள் மருத்துவ ஆலோசனைப் பயணம்"]}
+          title={["The Right Care Begins with the Right Consultation.", "சரியான பராமரிப்பு, சரியான ஆலோசனையில் தொடங்குகிறது."]}
+          sub={["Your health deserves attention, understanding and proper medical guidance.", ""]}
         />
         <ol className="relative m-0 grid list-none gap-0 p-0 min-[860px]:grid-cols-3 min-[860px]:gap-8">
           {/* connecting line */}
@@ -66,6 +63,9 @@ export default function HowItWorks() {
             </Reveal>
           ))}
         </ol>
+        <p className="display mx-auto mt-10 mb-0 max-w-[40ch] text-center text-[1.15rem] leading-[1.45] text-crimson min-[860px]:mt-14 min-[860px]:text-[1.3rem]">
+          {t("Your health. Your concerns. Guided by qualified doctors.", "உங்கள் உடல்நலம். தகுதிபெற்ற மருத்துவர்களின் வழிகாட்டுதல்.")}
+        </p>
       </div>
     </section>
   );

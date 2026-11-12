@@ -10,9 +10,20 @@ export default function Footer() {
     <footer className="bg-[#1B1414] pt-10 pb-8 min-[640px]:pt-14 min-[640px]:pb-10 text-[.92rem] text-white/70">
       <div className="wrap">
         <div className="grid gap-6 border-b border-solid border-white/10 pb-7 min-[640px]:gap-10 min-[640px]:pb-10 min-[860px]:grid-cols-[1.2fr_1fr_1fr]">
-          <div>
-            <p className="display m-0 text-[1.5rem] text-white">RJR Herbal Hospitals</p>
-            <p className="mt-2 mb-0 text-[.85rem] text-gold">Ayurveda &amp; Siddha</p>
+          <div className="flex items-center gap-4">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/logo.png"
+              alt="RJR Herbal Hospitals logo"
+              width={64}
+              height={64}
+              loading="lazy"
+              className="block h-14 w-14 flex-none rounded-full bg-white ring-2 ring-gold/60 min-[640px]:h-16 min-[640px]:w-16"
+            />
+            <div>
+              <p className="display m-0 text-[1.5rem] leading-tight text-white">RJR Herbal Hospitals</p>
+              <p className="mt-1 mb-0 text-[.85rem] text-gold">Ayurveda &amp; Siddha</p>
+            </div>
           </div>
           <div className="flex items-start gap-3">
             <PinIcon className="mt-1 h-[18px] w-[18px] flex-none text-gold" />
@@ -49,7 +60,11 @@ export default function Footer() {
           <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer" className="text-white/60 underline">
             CC BY-SA 4.0
           </a>
-          , via Wikimedia Commons.
+          ; Blausen Medical,{" "}
+          <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="noopener noreferrer" className="text-white/60 underline">
+            CC BY 3.0
+          </a>
+          ; via Wikimedia Commons.
         </p>
       </div>
     </footer>

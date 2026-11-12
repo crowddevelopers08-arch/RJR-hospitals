@@ -6,8 +6,8 @@ import SectionHeader from "./ui/SectionHeader";
 
 /* TODO: replace each placeholder with a consented patient video (no outcome promises in captions). */
 const STORIES: { b: [string, string]; s: [string, string] }[] = [
-  { b: ["Patient story 1", "நோயாளி அனுபவம் 1"], s: ["Add consented video here", "ஒப்புதல் பெற்ற வீடியோவை இங்கே சேர்க்கவும்"] },
-  { b: ["Patient story 2", "நோயாளி அனுபவம் 2"], s: ["Add consented video here", "ஒப்புதல் பெற்ற வீடியோவை இங்கே சேர்க்கவும்"] },
+  { b: ["Patient story 1", "நோயாளியின் அனுபவம் 01"], s: ["Add consented video here", "ஒப்புதல் பெற்ற வீடியோவை இங்கே சேர்க்கவும்"] },
+  { b: ["Patient story 2", "நோயாளியின் அனுபவம் 02"], s: ["Add consented video here", "ஒப்புதல் பெற்ற வீடியோவை இங்கே சேர்க்கவும்"] },
   { b: ["Doctor explains", "மருத்துவர் விளக்கம்"], s: ["Add 30-second doctor video here", "30 வினாடி மருத்துவர் வீடியோவை இங்கே சேர்க்கவும்"] },
 ];
 
@@ -19,10 +19,11 @@ export default function PatientStories() {
       <div className="wrap">
         <SectionHeader
           align="split"
-          title={["Patient stories", "நோயாளிகள் அனுபவங்கள்"]}
+          kicker={["Patient experiences", "நோயாளிகளின் அனுபவங்கள்"]}
+          title={["Patient stories", "RJR உடனான மருத்துவப் பயணங்கள்."]}
           sub={[
             "These are personal experiences shared with consent. Individual results vary.",
-            "இவை ஒப்புதலுடன் பகிரப்பட்ட தனிநபர் அனுபவங்கள்; முடிவுகள் நபருக்கு நபர் மாறுபடும்.",
+            "எங்கள் நோயாளிகள் தங்களின் அனுபவங்களைப் பகிர்ந்துகொள்கிறார்கள். தனிப்பட்ட அனுபவங்கள்; முடிவுகள் மாறுபடலாம்.",
           ]}
         />
         <Carousel cols={3}>

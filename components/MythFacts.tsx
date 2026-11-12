@@ -5,24 +5,24 @@ import SectionHeader from "./ui/SectionHeader";
 
 const ITEMS: { myth: [string, string]; fact: [string, string] }[] = [
   {
-    myth: ["Ayurveda is a last resort.", "ஆயுர்வேதம் கடைசி வழி."],
+    myth: ["Ayurveda takes too long to show results.", "ஆயுர்வேத சிகிச்சைக்கு அதிக காலம் ஆகும்."],
     fact: [
-      "It is a complete medical system with its own way of examining you. It works best when you start early.",
-      "இது தனக்கென்று பரிசோதனை முறை கொண்ட முழுமையான மருத்துவ முறை. சீக்கிரமே தொடங்கினால் சிறந்தது.",
+      "Treatment duration varies depending on the condition, its severity, and individual response.",
+      "சிகிச்சைக்கான காலம் நோயின் தன்மை மற்றும் தனிப்பட்ட உடல்நிலையைப் பொறுத்து மாறுபடும்.",
     ],
   },
   {
-    myth: ["There is no science behind it.", "இதற்கு அறிவியல் ஆதாரம் இல்லை."],
+    myth: ["Ayurvedic medicines have no side effects.", "ஆயுர்வேத மருந்துகளால் பக்கவிளைவுகள் இல்லை."],
     fact: [
-      "Ayurveda is regulated by the Government of India and practised by degree-qualified doctors, and research on it is growing.",
-      "ஆயுர்வேதம் இந்திய அரசால் முறைப்படுத்தப்பட்டது; பட்டம் பெற்ற மருத்துவர்கள் பயிற்சி செய்கிறார்கள்; இதன் மீதான ஆராய்ச்சியும் வளர்ந்து வருகிறது.",
+      "Natural does not automatically mean risk-free. Ayurvedic medicines should be taken under qualified medical guidance, with proper attention to dosage and suitability.",
+      "சரியான அளவு மற்றும் மருத்துவரின் ஆலோசனையுடன் மருந்துகளை எடுத்துக்கொள்வது அவசியம்.",
     ],
   },
   {
-    myth: ["Everyone gets the same medicine.", "எல்லோருக்கும் ஒரே மருந்து."],
+    myth: ["Ayurveda is only meant for older people.", "ஆயுர்வேதம் வயதானவர்களுக்கு மட்டுமே."],
     fact: [
-      "Your doctor examines you first, then explains your plan and what to expect.",
-      "மருத்துவர் முதலில் பரிசோதித்து, உங்கள் திட்டத்தையும் எதிர்பார்க்க வேண்டியவற்றையும் விளக்குவார்.",
+      "People across different age groups may seek Ayurvedic consultations. Treatment suitability depends on individual health needs and medical assessment.",
+      "பல்வேறு வயதினரும் தங்களின் உடல்நிலைக்கு ஏற்ற மருத்துவ ஆலோசனையைப் பெறலாம்.",
     ],
   },
 ];
@@ -34,13 +34,11 @@ export default function MythFacts() {
     <section id="myths" className="section-y bg-white pt-[60px] min-[640px]:pt-[88px] min-[860px]:pt-[128px]">
       <div className="wrap">
         <SectionHeader
-          align="split"
-          kicker={["Know the facts", "உண்மை அறிவோம்"]}
-          title={["Three myths, three facts", "மூன்று கட்டுக்கதைகள், மூன்று உண்மைகள்"]}
-          sub={["What people often say about Ayurveda, answered plainly.", "ஆயுர்வேதம் பற்றி மக்கள் அடிக்கடி கேட்பவை, எளிய பதில்களுடன்."]}
+          kicker={["Myth vs fact", "தெரிந்துகொள்ள வேண்டிய உண்மைகள்"]}
+          title={["Ayurveda: Beyond the Common Misconceptions", "ஆயுர்வேதம்: தவறான புரிதல்களும் உண்மைகளும்"]}
         />
         <ol className="m-0 list-none border-t border-solid border-line p-0">
-          {ITEMS.map((it) => (
+          {ITEMS.map((it, i) => (
             <li
               key={it.myth[0]}
               className="grid gap-3 border-b border-solid border-line py-5 min-[640px]:gap-4 min-[640px]:py-7 min-[860px]:grid-cols-[minmax(0,.9fr)_minmax(0,1.1fr)] min-[860px]:gap-14 min-[860px]:py-10"
@@ -55,7 +53,7 @@ export default function MythFacts() {
                   </svg>
                 </span>
                 <div>
-                  <p className="mt-0 mb-1 text-[.82rem] font-semibold text-crimson">{t("Myth", "கட்டுக்கதை")}</p>
+                  <p className="mt-0 mb-1 text-[.82rem] font-semibold text-crimson">{t(`Myth 0${i + 1}`, `தவறான புரிதல் 0${i + 1}`)}</p>
                   <p className="display m-0 text-[clamp(1.15rem,2vw,1.4rem)] font-medium text-muted line-through decoration-crimson/40 decoration-[1.5px]">
                     {t(...it.myth)}
                   </p>

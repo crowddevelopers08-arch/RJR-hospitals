@@ -4,11 +4,11 @@ import { useEffect, useRef, useState } from "react";
 import { useLang } from "@/lib/i18n";
 
 const STATS: { n: number; suffix: string; en: string; ta: string }[] = [
-  { n: 6, suffix: "M+", en: "Patients treated across South India", ta: "சிகிச்சை பெற்ற நோயாளிகள் (தென்னிந்தியா முழுவதும்)" },
-  { n: 37, suffix: "", en: "Branches in Tamil Nadu", ta: "தமிழ்நாட்டில் கிளைகள்" },
+  { n: 6, suffix: "M+", en: "Patients treated across South India", ta: "சிகிச்சை பெற்றவர்கள்" },
+  { n: 37, suffix: "", en: "Branches in Tamil Nadu", ta: "கிளைகள்" },
   { n: 300, suffix: "+", en: "Doctors", ta: "மருத்துவர்கள்" },
-  { n: 150, suffix: "+", en: "Years · 5 generations", ta: "ஆண்டுகள் · 5 தலைமுறைகள்" },
-  { n: 1500, suffix: "+", en: "Care staff", ta: "பணியாளர்கள்" },
+  { n: 150, suffix: "+", en: "Years · 5 generations", ta: "ஆண்டுகால பாரம்பரியம்" },
+  { n: 1500, suffix: "+", en: "Care staff", ta: "பராமரிப்புப் பணியாளர்கள்" },
 ];
 
 /* Counts every number up from 0 the first time the band is 40% visible */
