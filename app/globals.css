@@ -1,0 +1,146 @@
+@import "tailwindcss";
+
+/* RJR brand colours (read from rjrherbalhospitals.com) plus the premium surface tokens */
+@theme {
+  --color-crimson: #c22220;
+  --color-crimson-dk: #9e1a18;
+  --color-kumkum: #6e1210; /* deepest brand red, for dark surfaces */
+  --color-red: #e03034;
+  --color-red-hover: #c42528;
+  --color-gold: #fdcf3b;
+  --color-gold-hover: #e8bd2f;
+  --color-gold-ink: #9a6f00; /* gold that passes contrast on light backgrounds */
+  --color-ink: #1f2532;
+  --color-cream: #fff8ec;
+  --color-ivory: #fbf7f1;
+  --color-line: #ebe1d2;
+  --color-muted: #5b6678;
+
+  --font-display: var(--font-poppins), var(--font-tamil), system-ui, sans-serif;
+  --font-body: var(--font-rubik), var(--font-tamil), system-ui, sans-serif;
+
+  --shadow-card: 0 1px 2px rgba(31, 37, 50, 0.04), 0 8px 24px rgba(31, 37, 50, 0.06);
+  --shadow-card-lg: 0 2px 4px rgba(31, 37, 50, 0.05), 0 24px 48px rgba(31, 37, 50, 0.12);
+  --shadow-float: 0 30px 80px rgba(60, 8, 7, 0.35);
+
+  --ease-out-soft: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Hero entrance runs in CSS so the message paints before JavaScript loads */
+  --animate-rise: rise 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
+
+/* Shared page container: 16px gutters on phones, wider on large screens */
+@utility wrap {
+  width: 100%;
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: 16px;
+  @media (width >= 640px) {
+    padding-inline: 24px;
+  }
+  @media (width >= 1024px) {
+    padding-inline: 32px;
+  }
+}
+
+/* Vertical rhythm for every section */
+@utility section-y {
+  padding-block: 44px;
+  @media (width >= 640px) {
+    padding-block: 64px;
+  }
+  @media (width >= 860px) {
+    padding-block: 104px;
+  }
+}
+
+/* Display headings (Poppins, as on the RJR site): tighter tracking as type grows */
+@utility display {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.18;
+}
+
+html {
+  background: #fff;
+  scroll-behavior: smooth;
+  scroll-padding-top: 84px;
+  -webkit-text-size-adjust: 100%;
+}
+body {
+  margin: 0;
+  font-size: 16px;
+  font-family: var(--font-body);
+  color: var(--color-ink);
+  background: #fff;
+  line-height: 1.65;
+  padding-bottom: 84px;
+  overflow-x: clip;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+@layer base {
+  /* Headings use Poppins site-wide, like the RJR site */
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+  }
+  /* form controls do not inherit fonts by default */
+  button,
+  input,
+  select,
+  textarea {
+    font-family: inherit;
+  }
+}
+body.ta {
+  font-family: var(--font-tamil), var(--font-rubik), system-ui, sans-serif;
+}
+/* Tamil runs longer and has tall glyphs: give display text more room */
+body.ta .display {
+  letter-spacing: 0;
+  line-height: 1.35;
+}
+body.lock {
+  overflow: hidden;
+}
+:focus-visible {
+  outline: 3px solid var(--color-gold);
+  outline-offset: 2px;
+}
+::selection {
+  background: rgba(253, 207, 59, 0.45);
+}
+
+/* Leaflet renders its own DOM, so its overrides live here */
+.leaflet-container {
+  font-family: inherit;
+  background: #e6eef3;
+}
+.leaflet-tooltip {
+  font: 500 12px var(--font-rubik), sans-serif;
+  color: #1f2532;
+  border-radius: 8px;
+  border: 1px solid var(--color-line);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    scroll-behavior: auto !important;
+    transition: none !important;
+  }
+}
