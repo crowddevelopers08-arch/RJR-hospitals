@@ -63,7 +63,7 @@ export default function HowItWorks() {
             </Reveal>
           ))}
         </ol>
-        <p className="display mx-auto mt-10 mb-0 max-w-[40ch] text-center text-[1.15rem] leading-[1.45] text-crimson min-[860px]:mt-14 min-[860px]:text-[1.3rem]">
+        <p className="display mx-auto mt-10 mb-0 text-center min-[860px]:whitespace-nowrap text-[1.15rem] leading-[1.45] text-crimson min-[860px]:mt-14 min-[860px]:text-[1.3rem]">
           {t("Your health. Your concerns. Guided by qualified doctors.", "உங்கள் உடல்நலம். தகுதிபெற்ற மருத்துவர்களின் வழிகாட்டுதல்.")}
         </p>
       </div>

@@ -26,7 +26,7 @@ export default function SectionHeader({
 
   return (
     <header
-      className={`mb-6 min-[640px]:mb-10 min-[860px]:mb-14 ${center ? "mx-auto max-w-[720px] text-center" : ""} ${
+      className={`mb-6 min-[640px]:mb-10 min-[860px]:mb-14 ${center ? "mx-auto max-w-[720px] text-center min-[860px]:max-w-none" : ""} ${
         align === "split" ? "grid gap-3 min-[640px]:gap-4 min-[960px]:grid-cols-[1.1fr_.9fr] min-[960px]:items-end min-[960px]:gap-12" : ""
       }`}
     >
@@ -50,7 +50,7 @@ export default function SectionHeader({
       </div>
       {subText && (
         <p
-          className={`m-0 max-w-[600px] text-[1.1rem] leading-[1.7] min-[860px]:text-[1.2rem] ${center ? "mx-auto mt-3 min-[640px]:mt-4" : align === "split" ? "" : "mt-3 min-[640px]:mt-4"} ${
+          className={`m-0 max-w-[600px] text-[1.1rem] leading-[1.7] min-[860px]:text-[1.2rem] ${center ? "mx-auto mt-3 min-[640px]:mt-4 min-[860px]:max-w-none min-[860px]:whitespace-nowrap" : align === "split" ? "" : "mt-3 min-[640px]:mt-4"} ${
             dark ? "text-white/80" : "text-muted"
           }`}
         >

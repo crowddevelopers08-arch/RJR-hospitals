@@ -25,11 +25,11 @@ export default function Treatments() {
             <TreatmentCard key={x.en[0]} item={x} />
           ))}
         </Carousel>
-        <div className="mx-auto mt-10 flex max-w-[620px] flex-col items-center text-center min-[860px]:mt-14">
+        <div className="mx-auto mt-10 flex max-w-[620px] flex-col min-[860px]:max-w-none items-center text-center min-[860px]:mt-14">
           <h3 className="display mt-0 mb-2 text-[clamp(1.35rem,2.6vw,1.75rem)] text-ink">
             {t("Not seeing your health concern listed?", "உங்கள் பிரச்சினை பட்டியலில் இல்லையா?")}
           </h3>
-          <p className="mt-0 mb-6 text-[1.02rem] leading-[1.7] text-muted">
+          <p className="mt-0 mb-6 text-[1.02rem] leading-[1.7] text-muted min-[860px]:whitespace-nowrap">
             {t(
               "Your health concerns deserve individual attention. Speak with our qualified doctor to find out.",
               "எங்கள் மருத்துவர்களை அணுகி ஆலோசனை பெறுங்கள்."

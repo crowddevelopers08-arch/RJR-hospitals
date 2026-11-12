@@ -77,17 +77,10 @@ const BranchPanel = forwardRef<HTMLElement, Props>(function BranchPanel({ active
               </span>
             </div>
           </div>
-          <div className="flex flex-wrap gap-2">
-            <a href={`tel:${b.p[0]}`} onClick={() => track("call_branch", { branch: b.n })} className={btn("red", "panel")}>
+          {/* one row: Call sized to its label, Book takes the remaining width */}
+          <div className="grid grid-cols-[auto_1fr] gap-2">
+            <a href={`tel:${b.p[0]}`} onClick={() => track("call_branch", { branch: b.n })} className={btn("red", "panel", "px-6")}>
               {u.call}
-            </a>
-            <a
-              target="_blank"
-              rel="noopener"
-              href={`https://www.google.com/maps/dir/?api=1&destination=${b.x ? encodeURIComponent(`RJR Herbal Hospital ${b.n} ${b.a}`) : `${b.la},${b.lo}`}`}
-              className={btn("line", "panel")}
-            >
-              {u.dir}
             </a>
             <a
               href="#book"
