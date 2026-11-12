@@ -1,8 +1,9 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
 import { useBooking } from "@/lib/booking";
-import { BR, CONCERNS, CONFIG, UI, bname } from "@/lib/data";
+import { BR, CONCERNS, UI, bname } from "@/lib/data";
 import { useLang } from "@/lib/i18n";
 import { track } from "@/lib/track";
 import { btn } from "./ui/button";
@@ -29,7 +30,8 @@ type Errors = { name?: boolean; phone?: boolean; consent?: boolean };
 
 export default function LeadForm({ variant }: { variant: "hero" | "modal" }) {
   const { t, lang } = useLang();
-  const { openCount, presetBranch } = useBooking();
+  const { openCount, presetBranch, closeModal } = useBooking();
+  const router = useRouter();
   const isModal = variant === "modal";
   const sfx = isModal ? "_m" : "";
 
@@ -41,6 +43,9 @@ export default function LeadForm({ variant }: { variant: "hero" | "modal" }) {
   const [utm, setUtm] = useState<Record<string, string>>({});
   const [errors, setErrors] = useState<Errors>({});
   const [submitted, setSubmitted] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [sendError, setSendError] = useState(false);
+  const [company, setCompany] = useState("");
 
   const nameRef = useRef<HTMLInputElement>(null);
   const branchRef = useRef<HTMLSelectElement>(null);
@@ -63,6 +68,7 @@ export default function LeadForm({ variant }: { variant: "hero" | "modal" }) {
   useEffect(() => {
     if (!isModal || openCount === 0) return;
     setSubmitted(false);
+    setSendError(false);
     setErrors({});
     if (presetBranch) setBranch(presetBranch);
     const id = setTimeout(() => nameRef.current?.focus(), 60);
@@ -91,30 +97,30 @@ export default function LeadForm({ variant }: { variant: "hero" | "modal" }) {
       phone: ph,
       branch,
       concern,
-      utm_source: "",
-      utm_medium: "",
-      utm_campaign: "",
-      utm_content: "",
-      utm_term: "",
-      gclid: "",
-      fbclid: "",
       ...utm,
       lang,
-      page_url: location.href,
-      submitted_at: new Date().toISOString(),
+      pageUrl: location.href,
+      company, // honeypot: real visitors never fill this
     };
-    const done = () => {
-      track("generate_lead", { branch: data.branch, concern: data.concern, lang });
-      setSubmitted(true);
-    };
-    if (CONFIG.WEBHOOK_URL) {
-      fetch(CONFIG.WEBHOOK_URL, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(data) })
-        .then(done)
-        .catch(done);
-    } else {
-      console.warn("WEBHOOK_URL not set; lead not sent", data);
-      done();
-    }
+
+    setSending(true);
+    setSendError(false);
+    fetch("/api/lead", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(data) })
+      .then(async (res) => {
+        const json = (await res.json().catch(() => ({}))) as { success?: boolean };
+        if (!res.ok || !json.success) throw new Error("lead not saved");
+        track("generate_lead", { branch, concern, lang });
+        setName("");
+        setPhone("");
+        setConsent(false);
+        // close the pop-up (if this is it) and go to the thank-you page for the chosen branch
+        closeModal();
+        router.push(`/thank-you?branch=${encodeURIComponent(branch)}`);
+      })
+      .catch(() => {
+        setSendError(true);
+        setSending(false);
+      });
   }
 
   return (
@@ -203,18 +209,42 @@ export default function LeadForm({ variant }: { variant: "hero" | "modal" }) {
               {t(
                 "I agree to be contacted by call or WhatsApp about my consultation.",
                 "என்னை அழைக்க அல்லது WhatsApp மூலம் தொடர்பு கொள்ள ஒப்புக்கொள்கிறேன்."
-              )}
+              )}{" "}
+              <a href="/privacy-policy" target="_blank" className="font-semibold text-crimson underline underline-offset-2">
+                {t("Privacy Policy", "தனியுரிமைக் கொள்கை")}
+              </a>
             </span>
           </label>
           {errors.consent && <div className={errCls}>{t("Please tick to continue", "தொடர ஒப்புதல் அவசியம்")}</div>}
 
+          {/* honeypot: hidden from people and screen readers; bots that fill it are dropped server-side */}
+          <input
+            type="text"
+            name="company"
+            tabIndex={-1}
+            autoComplete="off"
+            aria-hidden="true"
+            value={company}
+            onChange={(e) => setCompany(e.target.value)}
+            className="absolute -left-[9999px] h-px w-px opacity-0"
+          />
           <button
             type="submit"
+            disabled={sending}
+            aria-busy={sending}
             onClick={() => track("form_submit_click", { branch })}
             className={btn("red", "md", "mt-5 w-full")}
           >
-            {t("Book my consultation", "என் ஆலோசனையை பதிவு செய்")}
+            {sending ? t("Booking…", "பதிவு செய்கிறோம்…") : t("Book my consultation", "என் ஆலோசனையை பதிவு செய்")}
           </button>
+          {sendError && (
+            <div role="alert" className="mt-3 rounded-xl bg-[#FDF3F2] px-4 py-3 text-center text-[.86rem] font-medium text-red-hover">
+              {t("Could not submit right now. Please call us directly: ", "இப்போது பதிவு செய்ய முடியவில்லை. நேரடியாக அழையுங்கள்: ")}
+              <a href="tel:+917871111115" className="font-semibold text-crimson underline">
+                78711 11115
+              </a>
+            </div>
+          )}
           <p className="mt-3 mb-0 text-center text-[.78rem] leading-[1.5] text-muted">
             {t(
               "Treatment is advised only after a doctor's examination. Individual results vary.",

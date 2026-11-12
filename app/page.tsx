@@ -1,7 +1,3 @@
-import { BookingProvider } from "@/lib/booking";
-import { LanguageProvider } from "@/lib/i18n";
-import TopBar from "@/components/TopBar";
-import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Stats from "@/components/Stats";
 import MythFacts from "@/components/MythFacts";
@@ -12,34 +8,21 @@ import PatientStories from "@/components/PatientStories";
 import BranchLocator from "@/components/BranchLocator";
 import Faq from "@/components/Faq";
 import FinalCta from "@/components/FinalCta";
-import Footer from "@/components/Footer";
-import StickyBar from "@/components/StickyBar";
-import BookingModal from "@/components/BookingModal";
-import ScrollToTop from "@/components/ScrollToTop";
 
+/* Header, footer, sticky bar and the booking pop-up live in app/layout.tsx so every page shares them */
 export default function Home() {
   return (
-    <LanguageProvider>
-      <BookingProvider>
-        <TopBar />
-        <Header />
-        <main id="top">
-          <Hero />
-          <Stats />
-          <MythFacts />
-          <HowItWorks />
-          <Treatments />
-          <Doctors />
-          <PatientStories />
-          <BranchLocator />
-          <Faq />
-          <FinalCta />
-        </main>
-        <Footer />
-        <StickyBar />
-        <BookingModal />
-        <ScrollToTop />
-      </BookingProvider>
-    </LanguageProvider>
+    <main id="top">
+      <Hero />
+      <Stats />
+      <MythFacts />
+      <HowItWorks />
+      <Treatments />
+      <Doctors />
+      <PatientStories />
+      <BranchLocator />
+      <Faq />
+      <FinalCta />
+    </main>
   );
 }

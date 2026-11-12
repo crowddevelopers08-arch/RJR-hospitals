@@ -1,6 +1,6 @@
-/* ================= CONFIG: fill these before launch ================= */
+/* ================= CONFIG =================
+   Leads go through /api/lead → Google Sheets + TeleCRM (keys in .env.local, see .env.example). */
 export const CONFIG = {
-  WEBHOOK_URL: "", // TODO: Make.com / CRM webhook that receives the lead JSON
   CENTRAL_PHONE: "+917871111115", // TN and Puducherry number from the RJR site
   IMG: "/images/", // all images are served locally from public/images
 };

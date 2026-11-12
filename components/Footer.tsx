@@ -55,8 +55,16 @@ export default function Footer() {
             "இந்தப் பக்கத்தில் உள்ள தகவல்கள் பொதுவானவை; மருத்துவரின் ஆலோசனைக்கு மாற்றல்ல. பதிவு பெற்ற மருத்துவர் பரிசோதித்த பிறகே சிகிச்சை பரிந்துரைக்கப்படும். முடிவுகள் நபருக்கு நபர் மாறுபடும். நோயாளிகளின் அனுபவங்கள் ஒப்புதலுடன் பகிரப்படுகின்றன."
           )}
         </p>
+        <nav aria-label="Footer" className="mb-3 flex flex-wrap gap-x-5 gap-y-2 text-[.86rem]">
+          <a href="/" className="text-white/80 no-underline transition-colors hover:text-gold">
+            {t("Home", "முகப்பு")}
+          </a>
+          <a href="/privacy-policy" className="text-white/80 no-underline transition-colors hover:text-gold">
+            {t("Privacy Policy", "தனியுரிமைக் கொள்கை")}
+          </a>
+        </nav>
         <p className="m-0 text-[.74rem] text-white/40">
-          Treatment illustrations: Scientific Animations,{" "}
+          © {new Date().getFullYear()} RJR Herbal Hospitals. Treatment illustrations: Scientific Animations,{" "}
           <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer" className="text-white/60 underline">
             CC BY-SA 4.0
           </a>

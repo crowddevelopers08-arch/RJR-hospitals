@@ -32,7 +32,7 @@ export default function Header() {
       }`}
     >
       <div className="wrap flex min-h-[72px] items-center justify-between gap-3">
-        <a href="#top" aria-label="RJR Herbal Hospitals" className="flex items-center gap-3 font-bold text-crimson no-underline">
+        <a href="/" aria-label="RJR Herbal Hospitals - home" className="flex items-center gap-3 font-bold text-crimson no-underline">
           {!noLogo ? (
             <>
               {/* eslint-disable-next-line @next/next/no-img-element */}
