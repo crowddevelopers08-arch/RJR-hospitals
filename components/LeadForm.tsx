@@ -11,7 +11,7 @@ import { btn } from "./ui/button";
 const UTM_KEYS = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term", "gclid", "fbclid"] as const;
 
 const inputCls =
-  "w-full min-h-[50px] rounded-xl border border-solid border-[#DDD2C2] bg-ivory px-4 py-3 text-[16px] leading-normal text-ink transition-[border-color,background-color,box-shadow] duration-200 placeholder:text-[#9AA3B2] hover:border-[#CBBBA4] focus:border-crimson focus:bg-white focus:shadow-[0_0_0_4px_rgba(194,34,32,.12)] focus:outline-none aria-[invalid=true]:border-red aria-[invalid=true]:bg-white";
+  "w-full min-h-[50px] rounded-xl border border-solid border-[#DDD2C2] bg-ivory px-4 py-3 text-[16px] leading-normal text-ink transition-[border-color,background-color,box-shadow] duration-200 placeholder:text-[#9AA3B2] hover:border-[#CBBBA4] focus:border-forest focus:bg-white focus:shadow-[0_0_0_4px_rgba(18,48,31,.12)] focus:outline-none aria-[invalid=true]:border-red aria-[invalid=true]:bg-white";
 const labelCls = "mt-3 mb-1.5 min-[640px]:mt-4 block text-[.86rem] leading-[1.4] font-semibold text-ink";
 const errCls = "mt-1.5 flex items-center gap-1.5 text-[.8rem] font-medium text-red-hover";
 
@@ -129,10 +129,10 @@ export default function LeadForm({ variant }: { variant: "hero" | "modal" }) {
         isModal ? "pt-9 shadow-[0_30px_80px_rgba(0,0,0,.45)]" : "shadow-float ring-1 ring-white/20"
       }`}
     >
-      <span aria-hidden="true" className="absolute inset-x-0 top-0 h-1 bg-[linear-gradient(90deg,#C22220,#FDCF3B)]" />
+      <span aria-hidden="true" className="absolute inset-x-0 top-0 h-1 bg-[linear-gradient(90deg,#1A4331,#C9962E)]" />
       {!submitted ? (
         <form noValidate onSubmit={onSubmit}>
-          <h2 id={isModal ? "mTitle" : undefined} className="display mt-0 mb-1.5 pr-10 text-[1.6rem] text-crimson">
+          <h2 id={isModal ? "mTitle" : undefined} className="display mt-0 mb-1.5 pr-10 text-[1.6rem] text-forest">
             {t("Book a consultation", "ஆலோசனைக்கு முன்பதிவு செய்யுங்கள்")}
           </h2>
           <p className="m-0 text-[.92rem] text-muted">
@@ -203,14 +203,14 @@ export default function LeadForm({ variant }: { variant: "hero" | "modal" }) {
               required
               checked={consent}
               onChange={(e) => setConsent(e.target.checked)}
-              className="mt-[2px] h-[18px] w-[18px] shrink-0 cursor-pointer accent-crimson"
+              className="mt-[2px] h-[18px] w-[18px] shrink-0 cursor-pointer accent-forest"
             />
             <span>
               {t(
                 "I agree to be contacted by call or WhatsApp about my consultation.",
                 "என்னை அழைக்க அல்லது WhatsApp மூலம் தொடர்பு கொள்ள ஒப்புக்கொள்கிறேன்."
               )}{" "}
-              <a href="/privacy-policy" target="_blank" className="font-semibold text-crimson underline underline-offset-2">
+              <a href="/privacy-policy" target="_blank" className="font-semibold text-forest underline underline-offset-2">
                 {t("Privacy Policy", "தனியுரிமைக் கொள்கை")}
               </a>
             </span>
@@ -233,14 +233,14 @@ export default function LeadForm({ variant }: { variant: "hero" | "modal" }) {
             disabled={sending}
             aria-busy={sending}
             onClick={() => track("form_submit_click", { branch })}
-            className={btn("red", "md", "mt-5 w-full")}
+            className={btn("primary", "md", "mt-5 w-full")}
           >
             {sending ? t("Booking…", "பதிவு செய்கிறோம்…") : t("Book my consultation", "என் ஆலோசனையை பதிவு செய்")}
           </button>
           {sendError && (
-            <div role="alert" className="mt-3 rounded-xl bg-[#FDF3F2] px-4 py-3 text-center text-[.86rem] font-medium text-red-hover">
+            <div role="alert" className="mt-3 rounded-xl bg-[#F6E4E1] px-4 py-3 text-center text-[.86rem] font-medium text-red-hover">
               {t("Could not submit right now. Please call us directly: ", "இப்போது பதிவு செய்ய முடியவில்லை. நேரடியாக அழையுங்கள்: ")}
-              <a href="tel:+917871111115" className="font-semibold text-crimson underline">
+              <a href="tel:+917871111115" className="font-semibold text-forest underline">
                 78711 11115
               </a>
             </div>
@@ -254,16 +254,16 @@ export default function LeadForm({ variant }: { variant: "hero" | "modal" }) {
         </form>
       ) : (
         <div role="status" className="py-4 text-center">
-          <span aria-hidden="true" className="mx-auto mb-4 grid h-14 w-14 place-items-center rounded-full bg-[#FBE9E8] text-crimson">
+          <span aria-hidden="true" className="mx-auto mb-4 grid h-14 w-14 place-items-center rounded-full bg-sand text-forest">
             <svg viewBox="0 0 24 24" className="h-7 w-7" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
               <path d="M5 12.5l4.5 4.5L19 7.5" />
             </svg>
           </span>
-          <h3 className="display mt-0 mb-2 text-[1.6rem] text-crimson">{t("Thank you!", "நன்றி!")}</h3>
+          <h3 className="display mt-0 mb-2 text-[1.6rem] text-forest">{t("Thank you!", "நன்றி!")}</h3>
           <p className="mt-0 mb-5 text-muted">
             {t("Your branch will call you shortly. Want to speak right now?", "உங்கள் கிளை விரைவில் உங்களை அழைக்கும். உடனே பேச வேண்டுமா?")}
           </p>
-          <a href="tel:+917871111115" onClick={() => track("call_thankyou")} className={btn("gold", "md", "w-full")}>
+          <a href="tel:+917871111115" onClick={() => track("call_thankyou")} className={btn("forest", "md", "w-full")}>
             {t("Call now", "இப்போதே அழையுங்கள்")}
           </a>
         </div>

@@ -14,7 +14,7 @@ export default function Treatments() {
   const { openModal } = useBooking();
 
   return (
-    <section id="conditions" className="section-y bg-white">
+    <section id="conditions" className="section-y bg-ivory">
       <div className="wrap">
         <SectionHeader
           kicker={["Our areas of care", "எங்களின் மருத்துவப் பராமரிப்புப் பிரிவுகள்"]}
@@ -42,7 +42,7 @@ export default function Treatments() {
               track("treat_book");
               openModal();
             }}
-            className={btn("red", "lg")}
+            className={btn("primary", "lg")}
           >
             {t("Book Your Consultation", "மருத்துவ ஆலோசனையைப் பதிவு செய்யுங்கள்")}
           </a>

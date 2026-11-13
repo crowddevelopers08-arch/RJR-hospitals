@@ -7,10 +7,13 @@ const base =
   "disabled:cursor-not-allowed disabled:opacity-60";
 
 const variants = {
-  red: "border-0 bg-red text-white shadow-[0_10px_24px_-8px_rgba(224,48,52,.65)] hover:bg-red-hover hover:shadow-[0_14px_30px_-8px_rgba(224,48,52,.7)]",
-  gold: "border-0 bg-gold text-ink shadow-[0_10px_24px_-8px_rgba(253,207,59,.7)] hover:bg-gold-hover",
-  line: "bg-transparent text-crimson border-[1.5px] border-solid border-crimson hover:bg-crimson hover:text-white",
-  lineLight: "bg-white/5 text-white border-[1.5px] border-solid border-white/60 hover:bg-white hover:text-crimson-dk",
+  // main call to action: antique-gold gradient with forest text
+  primary:
+    "border-0 bg-[linear-gradient(180deg,#E3B54F,#C9962E)] text-forest shadow-[0_10px_24px_-8px_rgba(201,150,46,.75)] hover:shadow-[0_14px_30px_-8px_rgba(201,150,46,.85)] hover:brightness-105",
+  // secondary: forest with light-gold text
+  forest: "border-0 bg-forest text-gold shadow-[0_10px_24px_-8px_rgba(18,48,31,.5)] hover:bg-forest-2",
+  line: "bg-transparent text-forest border-[1.5px] border-solid border-forest hover:bg-forest hover:text-gold",
+  lineLight: "bg-white/5 text-white border-[1.5px] border-solid border-white/60 hover:bg-white hover:text-forest-dk",
 };
 
 const sizes = {

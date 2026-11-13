@@ -9,7 +9,7 @@ const OPTIONS: [Lang, string][] = [
   ["ta", "தமிழ்"],
 ];
 
-/* Segmented control: the crimson thumb slides to the chosen language */
+/* Segmented control: the forest thumb slides to the chosen language */
 export default function LanguageToggle() {
   const { lang, setLang } = useLang();
   return (
@@ -23,14 +23,14 @@ export default function LanguageToggle() {
             aria-pressed={on}
             onClick={() => setLang(code)}
             className={`relative min-h-9 cursor-pointer rounded-full border-0 bg-transparent px-3 text-[.82rem] font-semibold transition-colors duration-200 ${
-              on ? "text-white" : "text-crimson hover:text-crimson-dk"
+              on ? "text-gold" : "text-forest hover:text-forest-dk"
             }`}
           >
             {on && (
               <motion.span
                 layoutId="lang-thumb"
                 aria-hidden="true"
-                className="absolute inset-0 rounded-full bg-crimson shadow-[0_4px_10px_-2px_rgba(194,34,32,.5)]"
+                className="absolute inset-0 rounded-full bg-forest shadow-[0_4px_10px_-2px_rgba(18,48,31,.5)]"
                 transition={{ type: "spring", bounce: 0, duration: 0.35 }}
               />
             )}

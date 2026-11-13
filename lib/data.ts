@@ -19,17 +19,17 @@ export const HERO_IMAGES = [
 ];
 
 export const SLIDE_BG = [
-  "radial-gradient(circle at 78% 22%,rgba(253,207,59,.40),transparent 42%),linear-gradient(135deg,#9E1A18,#C22220)",
-  "radial-gradient(circle at 12% 82%,rgba(253,207,59,.34),transparent 46%),linear-gradient(120deg,#B02020,#E03034)",
-  "radial-gradient(circle at 60% 90%,rgba(253,207,59,.30),transparent 44%),linear-gradient(150deg,#8A1513,#C22220)",
-  "radial-gradient(circle at 88% 70%,rgba(253,207,59,.36),transparent 40%),linear-gradient(110deg,#A81C1A,#D8312E)",
-  "radial-gradient(circle at 30% 20%,rgba(253,207,59,.32),transparent 44%),linear-gradient(140deg,#9E1A18,#E03034)",
-  "radial-gradient(circle at 70% 30%,rgba(253,207,59,.38),transparent 42%),linear-gradient(130deg,#8A1513,#C22220)",
+  "radial-gradient(circle at 78% 22%,rgba(232,200,119,.34),transparent 46%),linear-gradient(120deg,#1A4331,#0F2B1D)",
+  "radial-gradient(circle at 12% 82%,rgba(232,200,119,.34),transparent 46%),linear-gradient(128deg,#2E6B52,#12301F)",
+  "radial-gradient(circle at 60% 90%,rgba(232,200,119,.34),transparent 46%),linear-gradient(136deg,#1A4331,#0B2418)",
+  "radial-gradient(circle at 88% 70%,rgba(232,200,119,.34),transparent 46%),linear-gradient(144deg,#245A43,#12301F)",
+  "radial-gradient(circle at 30% 20%,rgba(232,200,119,.34),transparent 46%),linear-gradient(152deg,#2E6B52,#0F2B1D)",
+  "radial-gradient(circle at 70% 30%,rgba(232,200,119,.34),transparent 46%),linear-gradient(160deg,#1A4331,#12301F)",
 ];
 
 /* Leaf pattern drawn over each hero slide */
 export const LEAF_PATTERN =
-  "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 64 64' fill='none' stroke='%23FDCF3B' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M12 52C12 28 28 12 52 12c0 24-16 40-40 40z'/%3E%3Cpath d='M12 52L36 28'/%3E%3C/svg%3E\")";
+  "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 64 64' fill='none' stroke='%23E8C877' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M12 52C12 28 28 12 52 12c0 24-16 40-40 40z'/%3E%3Cpath d='M12 52L36 28'/%3E%3C/svg%3E\")";
 
 /* Treatments carousel. img = RJR site icon (optional). Wording kept neutral: no cure or outcome claims. */
 export type Treatment = { photo: string; img: string; en: [string, string]; ta: [string, string] };

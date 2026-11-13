@@ -157,7 +157,7 @@ export default function PrivacyPolicyPage() {
     <main id="top" className="bg-white">
       <header className="bg-ivory">
         <div className="wrap py-12 min-[860px]:py-16">
-          <p className="mt-0 mb-3 text-[1rem] font-semibold text-crimson">Legal</p>
+          <p className="mt-0 mb-3 text-[1rem] font-semibold text-forest">Legal</p>
           <h1 className="display m-0 text-[clamp(2rem,4.6vw,3rem)] text-ink">Privacy Policy</h1>
           <p className="mt-3 mb-0 text-muted">Last updated: {UPDATED}</p>
         </div>
@@ -166,9 +166,9 @@ export default function PrivacyPolicyPage() {
       <div className="wrap py-10 min-[860px]:py-14">
         <article
           className="max-w-[72ch] text-[1rem] leading-[1.75] text-ink
-            [&_a]:font-semibold [&_a]:text-crimson [&_a]:underline [&_a]:underline-offset-2
+            [&_a]:font-semibold [&_a]:text-forest [&_a]:underline [&_a]:underline-offset-2
             [&_h2]:display [&_h2]:mt-10 [&_h2]:mb-3 [&_h2]:text-[1.35rem] [&_h2]:text-ink [&>section:first-child_h2]:mt-0
-            [&_li]:mb-1.5 [&_p]:my-3 [&_p]:text-[#3a4252] [&_ul]:my-3 [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:text-[#3a4252]"
+            [&_li]:mb-1.5 [&_p]:my-3 [&_p]:text-[#33433A] [&_ul]:my-3 [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:text-[#33433A]"
         >
           {SECTIONS.map((s) => (
             <section key={s.h}>

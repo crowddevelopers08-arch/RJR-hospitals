@@ -10,8 +10,8 @@ export default function FinalCta() {
   const { t } = useLang();
   const { openModal } = useBooking();
   return (
-    <section className="bg-white px-4 pb-10 min-[640px]:px-6 min-[640px]:pb-16 min-[860px]:pb-24">
-      <div className="mx-auto max-w-[1200px] rounded-[28px] bg-crimson px-5 py-10 text-center min-[640px]:px-6 min-[640px]:py-16 text-white shadow-float min-[860px]:rounded-[36px] min-[860px]:px-16 min-[860px]:py-24">
+    <section className="bg-ivory px-4 pb-10 min-[640px]:px-6 min-[640px]:pb-16 min-[860px]:pb-24">
+      <div className="mx-auto max-w-[1200px] rounded-[28px] bg-[radial-gradient(circle_at_50%_0%,#245A43,#12301F_70%)] px-5 py-10 text-center min-[640px]:px-6 min-[640px]:py-16 text-white shadow-float min-[860px]:rounded-[36px] min-[860px]:px-16 min-[860px]:py-24">
         <h2 className="display mx-auto mt-0 mb-4 max-w-[24ch] text-[clamp(1.9rem,4.4vw,3.1rem)] text-white">
           {t("A Healthier Tomorrow Begins with the Right Guidance.", "ஆரோக்கியமான நாளைக்கான முதல் படியை இன்றே தொடங்குங்கள்.")}
         </h2>
@@ -29,7 +29,7 @@ export default function FinalCta() {
               track("final_book");
               openModal();
             }}
-            className={btn("gold", "lg")}
+            className={btn("primary", "lg")}
           >
             {t("Book Your Consultation", "மருத்துவ ஆலோசனையைப் பதிவு செய்யுங்கள்")}
           </a>

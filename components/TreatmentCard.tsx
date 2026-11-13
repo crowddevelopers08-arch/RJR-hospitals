@@ -44,12 +44,12 @@ export default function TreatmentCard({ item }: { item: Treatment }) {
             className="max-h-[130px] max-w-[70%] object-contain"
           />
         ) : (
-          <LeafIcon className="h-20 w-20 text-crimson" />
+          <LeafIcon className="h-20 w-20 text-forest" />
         )}
         <span aria-hidden="true" className="absolute inset-x-0 bottom-0 h-16 bg-[linear-gradient(180deg,transparent,rgba(0,0,0,.18))]" />
       </div>
       <div className="flex flex-1 flex-col p-5 min-[640px]:p-6">
-        <h3 className="display mt-0 mb-2 text-[1.25rem] leading-[1.25] text-crimson">{title}</h3>
+        <h3 className="display mt-0 mb-2 text-[1.25rem] leading-[1.25] text-forest">{title}</h3>
         <p className="m-0 text-[.95rem] leading-[1.65] text-muted">{text}</p>
       </div>
     </article>

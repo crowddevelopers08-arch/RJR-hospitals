@@ -55,13 +55,13 @@ function Item({ q, a, open, onToggle }: { q: string; a: string; open: boolean; o
           aria-expanded={open}
           aria-controls={id}
           onClick={onToggle}
-          className="flex min-h-[56px] w-full cursor-pointer items-center justify-between gap-4 border-0 bg-transparent py-4 min-[640px]:min-h-[64px] min-[640px]:gap-6 min-[640px]:py-5 text-left text-[1.05rem] font-semibold leading-[1.45] text-ink transition-colors hover:text-crimson min-[860px]:text-[1.1rem]"
+          className="flex min-h-[56px] w-full cursor-pointer items-center justify-between gap-4 border-0 bg-transparent py-4 min-[640px]:min-h-[64px] min-[640px]:gap-6 min-[640px]:py-5 text-left text-[1.05rem] font-semibold leading-[1.45] text-ink transition-colors hover:text-forest min-[860px]:text-[1.1rem]"
         >
           <span>{q}</span>
           <span
             aria-hidden="true"
             className={`relative grid h-9 w-9 flex-none place-items-center rounded-full transition-[background-color,color,transform] duration-300 ${
-              open ? "rotate-45 bg-crimson text-white" : "bg-ivory text-crimson ring-1 ring-line"
+              open ? "rotate-45 bg-forest text-white" : "bg-ivory text-forest ring-1 ring-line"
             }`}
           >
             <svg viewBox="0 0 16 16" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round">
@@ -93,7 +93,7 @@ export default function Faq() {
   const { t } = useLang();
   const [open, setOpen] = useState(0);
   return (
-    <section id="faq" className="section-y bg-white">
+    <section id="faq" className="section-y bg-ivory">
       <div className="wrap grid gap-2 min-[960px]:grid-cols-[.8fr_1.2fr] min-[960px]:gap-16">
         <div className="min-[960px]:sticky min-[960px]:top-28 min-[960px]:self-start">
           <SectionHeader title={["Common questions", "அடிக்கடி கேட்கப்படும் கேள்விகள்"]} />

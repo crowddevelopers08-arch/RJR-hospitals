@@ -34,7 +34,7 @@ export default function SectionHeader({
         {kicker && (
           <p
             className={`mt-0 mb-2 flex items-center gap-3 min-[640px]:mb-4 text-[1rem] font-semibold min-[860px]:text-[1.08rem] ${center ? "justify-center" : ""} ${
-              dark ? "text-gold" : "text-crimson"
+              dark ? "text-gold" : "text-forest"
             }`}
           >
             {t(...kicker)}

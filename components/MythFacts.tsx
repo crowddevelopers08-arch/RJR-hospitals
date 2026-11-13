@@ -31,7 +31,7 @@ const ITEMS: { myth: [string, string]; fact: [string, string] }[] = [
 export default function MythFacts() {
   const { t } = useLang();
   return (
-    <section id="myths" className="section-y bg-white pt-[60px] min-[640px]:pt-[88px] min-[860px]:pt-[128px]">
+    <section id="myths" className="section-y bg-ivory">
       <div className="wrap">
         <SectionHeader
           kicker={["Myth vs fact", "தெரிந்துகொள்ள வேண்டிய உண்மைகள்"]}
@@ -46,15 +46,15 @@ export default function MythFacts() {
               <div className="flex items-start gap-4">
                 <span
                   aria-hidden="true"
-                  className="mt-1 grid h-8 w-8 flex-none place-items-center rounded-full bg-[#FBE9E8] text-crimson"
+                  className="mt-1 grid h-8 w-8 flex-none place-items-center rounded-full bg-[#F6E4E1] text-red"
                 >
                   <svg viewBox="0 0 16 16" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round">
                     <path d="M4 4l8 8M12 4l-8 8" />
                   </svg>
                 </span>
                 <div>
-                  <p className="mt-0 mb-1 text-[.82rem] font-semibold text-crimson">{t(`Myth 0${i + 1}`, `தவறான புரிதல் 0${i + 1}`)}</p>
-                  <p className="display m-0 text-[clamp(1.15rem,2vw,1.4rem)] font-medium text-muted line-through decoration-crimson/40 decoration-[1.5px]">
+                  <p className="mt-0 mb-1 text-[.82rem] font-semibold text-red">{t(`Myth 0${i + 1}`, `தவறான புரிதல் 0${i + 1}`)}</p>
+                  <p className="display m-0 text-[clamp(1.15rem,2vw,1.4rem)] font-medium text-muted line-through decoration-red/60 decoration-[1.5px]">
                     {t(...it.myth)}
                   </p>
                 </div>
@@ -62,7 +62,7 @@ export default function MythFacts() {
               <div className="flex items-start gap-4 pl-12 min-[860px]:pl-0">
                 <span
                   aria-hidden="true"
-                  className="mt-1 hidden h-8 w-8 flex-none place-items-center rounded-full bg-gold text-kumkum min-[860px]:grid"
+                  className="mt-1 hidden h-8 w-8 flex-none place-items-center rounded-full bg-gold text-forest-deep min-[860px]:grid"
                 >
                   <svg viewBox="0 0 16 16" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M3.5 8.4l3 3L12.5 5" />

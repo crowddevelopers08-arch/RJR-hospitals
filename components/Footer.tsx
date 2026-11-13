@@ -7,7 +7,7 @@ export default function Footer() {
   const { t } = useLang();
   const linkCls = "font-semibold text-white no-underline transition-colors hover:text-gold";
   return (
-    <footer className="bg-[#1B1414] pt-10 pb-8 min-[640px]:pt-14 min-[640px]:pb-10 text-[.92rem] text-white/70">
+    <footer className="bg-[#0B1D14] pt-10 pb-8 min-[640px]:pt-14 min-[640px]:pb-10 text-[.92rem] text-white/70">
       <div className="wrap">
         <div className="grid gap-6 border-b border-solid border-white/10 pb-7 min-[640px]:gap-10 min-[640px]:pb-10 min-[860px]:grid-cols-[1.2fr_1fr_1fr]">
           <div className="flex items-center gap-4">

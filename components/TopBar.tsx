@@ -7,7 +7,7 @@ import { ClockIcon, PhoneIcon } from "./ui/Icons";
 export default function TopBar() {
   const { t } = useLang();
   return (
-    <div className="bg-kumkum text-[.8rem] text-white/85">
+    <div className="bg-forest-deep text-[.8rem] text-white/85">
       <div className="wrap flex min-h-9 items-center justify-between gap-3 py-1.5">
         <span className="inline-flex items-center gap-2">
           <ClockIcon className="h-3.5 w-3.5 text-gold" />

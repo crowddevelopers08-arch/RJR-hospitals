@@ -16,7 +16,7 @@ const BranchPanel = forwardRef<HTMLElement, Props>(function BranchPanel({ active
   const { openModal } = useBooking();
   const u = UI[lang];
   const b = active >= 0 ? BR[active] : null;
-  const iconCls = "mt-[2px] h-[18px] w-[18px] text-crimson";
+  const iconCls = "mt-[2px] h-[18px] w-[18px] text-forest";
   const rowCls = "grid grid-cols-[22px_1fr] items-start gap-3";
 
   return (
@@ -29,7 +29,7 @@ const BranchPanel = forwardRef<HTMLElement, Props>(function BranchPanel({ active
         aria-label={u.pick}
         value={active < 0 ? "" : String(active)}
         onChange={(e) => onSelect(e.target.value === "" ? -1 : +e.target.value)}
-        className="min-h-[50px] w-full cursor-pointer rounded-xl border border-solid border-[#DDD2C2] bg-ivory px-4 py-3 text-[16px] leading-normal text-ink transition-[border-color,box-shadow] duration-200 hover:border-[#CBBBA4] focus:border-crimson focus:bg-white focus:shadow-[0_0_0_4px_rgba(194,34,32,.12)] focus:outline-none"
+        className="min-h-[50px] w-full cursor-pointer rounded-xl border border-solid border-[#DDD2C2] bg-ivory px-4 py-3 text-[16px] leading-normal text-ink transition-[border-color,box-shadow] duration-200 hover:border-[#CBBBA4] focus:border-forest focus:bg-white focus:shadow-[0_0_0_4px_rgba(18,48,31,.12)] focus:outline-none"
       >
         <option value="">{u.pick}</option>
         {BR.map((br, i) => (
@@ -43,7 +43,7 @@ const BranchPanel = forwardRef<HTMLElement, Props>(function BranchPanel({ active
         <p className="m-0 flex-1 text-[.95rem] leading-[1.7] text-muted">{u.empty}</p>
       ) : (
         <>
-          <h3 className="display m-0 text-[1.45rem] leading-[1.2] text-crimson">RJR Herbal Hospital, {bname(b, lang)}</h3>
+          <h3 className="display m-0 text-[1.45rem] leading-[1.2] text-forest">RJR Herbal Hospital, {bname(b, lang)}</h3>
           <div className="grid gap-4 border-y border-solid border-line py-5 text-[.94rem] leading-[1.6]">
             <div className={rowCls}>
               <PinIcon className={iconCls} />
@@ -61,7 +61,7 @@ const BranchPanel = forwardRef<HTMLElement, Props>(function BranchPanel({ active
                 {b.p.map((x, i) => (
                   <span key={x}>
                     {i > 0 && " · "}
-                    <a href={`tel:${x}`} className="font-semibold text-ink no-underline hover:text-crimson">
+                    <a href={`tel:${x}`} className="font-semibold text-ink no-underline hover:text-forest">
                       {fmtPhone(x)}
                     </a>
                   </span>
@@ -79,7 +79,7 @@ const BranchPanel = forwardRef<HTMLElement, Props>(function BranchPanel({ active
           </div>
           {/* one row: Call sized to its label, Book takes the remaining width */}
           <div className="grid grid-cols-[auto_1fr] gap-2">
-            <a href={`tel:${b.p[0]}`} onClick={() => track("call_branch", { branch: b.n })} className={btn("red", "panel", "px-6")}>
+            <a href={`tel:${b.p[0]}`} onClick={() => track("call_branch", { branch: b.n })} className={btn("primary", "panel", "px-6")}>
               {u.call}
             </a>
             <a
@@ -89,7 +89,7 @@ const BranchPanel = forwardRef<HTMLElement, Props>(function BranchPanel({ active
                 track("book_at_branch", { branch: b.n });
                 openModal(b.n);
               }}
-              className={btn("gold", "panel")}
+              className={btn("forest", "panel")}
             >
               {u.book}
             </a>
@@ -100,7 +100,7 @@ const BranchPanel = forwardRef<HTMLElement, Props>(function BranchPanel({ active
       <button
         type="button"
         onClick={onNearest}
-        className="mt-auto inline-flex min-h-[48px] cursor-pointer items-center justify-center gap-2 rounded-xl border border-dashed border-crimson/60 bg-[#FDF3F2] px-4 py-3 text-[.92rem] font-semibold text-crimson transition-[background-color,border-color] duration-200 hover:border-crimson hover:bg-[#FBE9E8] active:scale-[.98]"
+        className="mt-auto inline-flex min-h-[48px] cursor-pointer items-center justify-center gap-2 rounded-xl border border-dashed border-gold-hover bg-transparent px-4 py-3 text-[.92rem] font-semibold text-gold-ink transition-[background-color,border-color] duration-200 hover:border-gold-ink hover:bg-sand active:scale-[.98]"
       >
         <PinIcon className="h-4 w-4" />
         {u.near}

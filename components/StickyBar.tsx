@@ -17,7 +17,7 @@ export default function StickyBar() {
   return (
     <nav
       aria-label="Book an appointment"
-      className="fixed right-0 bottom-0 left-0 z-[70] border-t border-solid border-line/80 bg-white/90 pt-2 pb-[calc(8px+env(safe-area-inset-bottom))] shadow-[0_-12px_32px_-12px_rgba(31,37,50,.18)] backdrop-blur-[14px] backdrop-saturate-[1.6]"
+      className="fixed right-0 bottom-0 left-0 z-[70] border-t border-solid border-line/80 bg-ivory/90 pt-2 pb-[calc(8px+env(safe-area-inset-bottom))] shadow-[0_-12px_32px_-12px_rgba(18,48,31,.18)] backdrop-blur-[14px] backdrop-saturate-[1.6]"
     >
       <div className="wrap flex items-center justify-between gap-3">
         <div className="hidden leading-[1.35] font-semibold text-ink min-[860px]:block">
@@ -28,7 +28,7 @@ export default function StickyBar() {
         </div>
 
         <div className="grid w-full grid-cols-[1fr_1fr_1.3fr] gap-2 min-[860px]:w-auto min-[860px]:grid-cols-[auto_auto_auto]">
-          <a href="tel:+917871111115" onClick={() => track("call_sticky")} className={`${linkCls} border-[1.5px] border-solid border-crimson bg-white text-crimson hover:bg-[#FDF3F2]`}>
+          <a href="tel:+917871111115" onClick={() => track("call_sticky")} className={`${linkCls} border-[1.5px] border-solid border-forest bg-transparent text-forest hover:bg-sand`}>
             <PhoneIcon className={iconCls} />
             <span>{t("Call", "அழைக்க")}</span>
           </a>
@@ -48,7 +48,7 @@ export default function StickyBar() {
               track("book_sticky");
               openModal();
             }}
-            className={`${linkCls} bg-red text-white shadow-[0_10px_24px_-8px_rgba(224,48,52,.7)] hover:bg-red-hover`}
+            className={`${linkCls} bg-[linear-gradient(180deg,#E3B54F,#C9962E)] text-forest shadow-[0_8px_18px_-6px_rgba(201,150,46,.6)] hover:brightness-105`}
           >
             <span>{t("Book", "முன்பதிவு")}</span>
             <span className="hidden min-[420px]:inline">{t("appointment", "செய்யுங்கள்")}</span>

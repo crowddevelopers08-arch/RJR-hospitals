@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 export default function ThankYouPage() {
   return (
     // useSearchParams (branch from the URL) needs a Suspense boundary
-    <Suspense fallback={<main id="top" className="min-h-[60vh] bg-crimson-dk" />}>
+    <Suspense fallback={<main id="top" className="min-h-[60vh] bg-forest-dk" />}>
       <ThankYou />
     </Suspense>
   );

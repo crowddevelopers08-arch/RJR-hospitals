@@ -32,7 +32,7 @@ const STEPS: { h: [string, string]; p: [string, string] }[] = [
 export default function HowItWorks() {
   const { t } = useLang();
   return (
-    <section id="how" className="section-y bg-ivory">
+    <section id="how" className="section-y bg-sand">
       <div className="wrap">
         <SectionHeader
           align="center"
@@ -44,7 +44,7 @@ export default function HowItWorks() {
           {/* connecting line */}
           <span
             aria-hidden="true"
-            className="absolute top-6 bottom-6 left-6 w-px bg-[linear-gradient(180deg,#C22220,#FDCF3B)] min-[860px]:top-6 min-[860px]:right-[16.66%] min-[860px]:bottom-auto min-[860px]:left-[16.66%] min-[860px]:h-px min-[860px]:w-auto min-[860px]:bg-[linear-gradient(90deg,#C22220,#FDCF3B)]"
+            className="absolute top-6 bottom-6 left-6 w-px bg-[linear-gradient(180deg,#1A4331,#C9962E)] min-[860px]:top-6 min-[860px]:right-[16.66%] min-[860px]:bottom-auto min-[860px]:left-[16.66%] min-[860px]:h-px min-[860px]:w-auto min-[860px]:bg-[linear-gradient(90deg,#1A4331,#C9962E)]"
           />
           {STEPS.map((s, i) => (
             <Reveal
@@ -53,7 +53,7 @@ export default function HowItWorks() {
               delay={i * 0.12}
               className="relative grid grid-cols-[48px_1fr] gap-4 pb-5 last:pb-0 min-[640px]:gap-5 min-[640px]:pb-10 min-[860px]:grid-cols-1 min-[860px]:grid-rows-[auto_1fr] min-[860px]:justify-items-center min-[860px]:gap-6 min-[860px]:pb-0 min-[860px]:text-center"
             >
-              <span className="display relative z-[1] grid h-12 w-12 place-items-center rounded-full bg-crimson text-[1.3rem] text-gold shadow-[0_0_0_6px_#FBF7F1,0_10px_24px_-6px_rgba(194,34,32,.55)]">
+              <span className="display relative z-[1] grid h-12 w-12 place-items-center rounded-full bg-forest text-[1.3rem] text-gold shadow-[0_0_0_6px_#F0E7D4,0_10px_24px_-6px_rgba(18,48,31,.55)]">
                 {i + 1}
               </span>
               <div className="rounded-[20px] bg-white p-5 shadow-card min-[640px]:p-6 ring-1 ring-line min-[860px]:h-full min-[860px]:w-full min-[860px]:p-8">
@@ -63,7 +63,7 @@ export default function HowItWorks() {
             </Reveal>
           ))}
         </ol>
-        <p className="display mx-auto mt-10 mb-0 text-center min-[860px]:whitespace-nowrap text-[1.15rem] leading-[1.45] text-crimson min-[860px]:mt-14 min-[860px]:text-[1.3rem]">
+        <p className="display mx-auto mt-10 mb-0 text-center min-[860px]:whitespace-nowrap text-[1.15rem] leading-[1.45] text-forest min-[860px]:mt-14 min-[860px]:text-[1.3rem]">
           {t("Your health. Your concerns. Guided by qualified doctors.", "உங்கள் உடல்நலம். தகுதிபெற்ற மருத்துவர்களின் வழிகாட்டுதல்.")}
         </p>
       </div>

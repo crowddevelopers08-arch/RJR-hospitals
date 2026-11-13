@@ -17,9 +17,9 @@ export default function Hero() {
   const { t } = useLang();
 
   return (
-    <section id="book" className="relative isolate overflow-hidden bg-crimson-dk pt-6 pb-[100px] text-white min-[640px]:pt-9 min-[640px]:pb-[132px] min-[860px]:pt-12 min-[860px]:pb-[168px]">
+    <section id="book" className="relative isolate overflow-hidden bg-forest-dk pt-6 pb-10 text-white min-[640px]:pt-9 min-[640px]:pb-14 min-[860px]:pt-12 min-[860px]:pb-20">
       {/* fine gold line along the foot of the hero */}
-      <div aria-hidden="true" className="absolute inset-x-0 bottom-0 z-[1] h-px bg-[linear-gradient(90deg,transparent,rgba(253,207,59,.55),transparent)]" />
+      <div aria-hidden="true" className="absolute inset-x-0 bottom-0 z-[1] h-px bg-[linear-gradient(90deg,transparent,rgba(201,150,46,.55),transparent)]" />
 
       <div className="wrap relative z-[2] grid items-center gap-7 min-[640px]:gap-10 min-[960px]:grid-cols-[minmax(0,1fr)_minmax(0,520px)] min-[960px]:gap-14">
         {/* min-w-0 keeps the wide marquee row from stretching this column past the screen */}
@@ -27,7 +27,7 @@ export default function Hero() {
           <p
             className="motion-safe:animate-rise mt-0 mb-4 min-[640px]:mb-6 inline-flex items-center gap-3 rounded-full border border-solid border-gold/40 bg-white/[.06] py-1.5 pr-4 pl-1.5 text-[.85rem] font-medium text-gold backdrop-blur-sm"
           >
-            <span aria-hidden="true" className="grid h-7 w-7 place-items-center rounded-full bg-gold text-[.8rem] font-bold text-kumkum">
+            <span aria-hidden="true" className="grid h-7 w-7 place-items-center rounded-full bg-gold text-[.8rem] font-bold text-forest-deep">
               5
             </span>
             {t("5 generations · 150+ years of practice", "5 தலைமுறைகள் | 150+ ஆண்டுகால மருத்துவப் பாரம்பரியம்")}

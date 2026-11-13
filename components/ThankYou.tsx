@@ -31,10 +31,10 @@ export default function ThankYou() {
     "inline-flex min-h-[54px] items-center justify-center gap-2.5 rounded-full px-5 text-[.95rem] font-semibold no-underline transition-[background-color,transform] duration-200 active:scale-[.97]";
 
   return (
-    <main id="top" className="bg-crimson-dk text-white">
+    <main id="top" className="bg-forest-dk text-white">
       <section className="wrap grid min-h-[calc(100dvh-260px)] place-items-center py-14 min-[860px]:py-20">
         <div className="w-full max-w-[600px] text-center motion-safe:animate-rise">
-          <span aria-hidden="true" className="mx-auto mb-6 grid h-20 w-20 place-items-center rounded-full bg-gold text-kumkum shadow-[0_0_0_10px_rgba(253,207,59,.18)]">
+          <span aria-hidden="true" className="mx-auto mb-6 grid h-20 w-20 place-items-center rounded-full bg-gold text-forest-deep shadow-[0_0_0_10px_rgba(201,150,46,.18)]">
             <svg viewBox="0 0 24 24" className="h-10 w-10" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round">
               <path d="M5 12.5l4.5 4.5L19 7.5" />
             </svg>
@@ -48,25 +48,25 @@ export default function ThankYou() {
           </p>
 
           <div className="relative overflow-hidden rounded-[24px] bg-white p-6 text-left text-ink shadow-float min-[480px]:p-7">
-            <span aria-hidden="true" className="absolute inset-x-0 top-0 h-1 bg-[linear-gradient(90deg,#C22220,#FDCF3B)]" />
+            <span aria-hidden="true" className="absolute inset-x-0 top-0 h-1 bg-[linear-gradient(90deg,#1A4331,#C9962E)]" />
             {b ? (
               <>
-                <h2 className="display m-0 text-[1.3rem] leading-[1.25] text-crimson">RJR Herbal Hospital, {bname(b, lang)}</h2>
+                <h2 className="display m-0 text-[1.3rem] leading-[1.25] text-forest">RJR Herbal Hospital, {bname(b, lang)}</h2>
                 <p className="mt-2 mb-1 flex items-start gap-2.5 text-[.94rem] leading-[1.6] text-muted">
-                  <PinIcon className="mt-[3px] h-4 w-4 flex-none text-crimson" />
+                  <PinIcon className="mt-[3px] h-4 w-4 flex-none text-forest" />
                   {b.a}
                 </p>
                 <p className="mt-0 mb-5 flex items-center gap-2.5 text-[.94rem] text-muted">
-                  <PhoneIcon className="h-4 w-4 flex-none text-crimson" />
+                  <PhoneIcon className="h-4 w-4 flex-none text-forest" />
                   {b.p.map(fmtPhone).join(" · ")}
                 </p>
               </>
             ) : (
-              <h2 className="display mt-0 mb-5 text-[1.3rem] text-crimson">RJR Herbal Hospitals</h2>
+              <h2 className="display mt-0 mb-5 text-[1.3rem] text-forest">RJR Herbal Hospitals</h2>
             )}
 
             <div className={`grid gap-2.5 ${b ? "min-[560px]:grid-cols-3" : "min-[560px]:grid-cols-2"}`}>
-              <a href={`tel:${phone}`} onClick={() => track("call_thankyou", { branch: b?.n || "" })} className={`${btnBase} bg-crimson text-white hover:bg-crimson-dk`}>
+              <a href={`tel:${phone}`} onClick={() => track("call_thankyou", { branch: b?.n || "" })} className={`${btnBase} bg-forest text-white hover:bg-forest-dk`}>
                 <PhoneIcon className="h-5 w-5" />
                 {t("Call", "அழைக்க")}
               </a>
@@ -86,7 +86,7 @@ export default function ThankYou() {
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={() => track("directions_thankyou", { branch: b.n })}
-                  className={`${btnBase} border-[1.5px] border-solid border-crimson bg-white text-crimson hover:bg-[#FDF3F2]`}
+                  className={`${btnBase} border-[1.5px] border-solid border-forest bg-white text-forest hover:bg-sand`}
                 >
                   <PinIcon className="h-5 w-5" />
                   {t("Directions", "வழி காட்டு")}

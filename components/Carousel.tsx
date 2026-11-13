@@ -60,7 +60,7 @@ export default function Carousel({
   }, [autoplay, canScroll, go]);
 
   const arrow =
-    "grid h-12 w-12 cursor-pointer place-items-center rounded-full border-0 bg-white text-crimson shadow-card-lg ring-1 ring-line transition-[background-color,color,transform] duration-200 hover:bg-crimson hover:text-white active:scale-95 " +
+    "grid h-12 w-12 cursor-pointer place-items-center rounded-full border-0 bg-white text-forest shadow-card-lg ring-1 ring-line transition-[background-color,color,transform] duration-200 hover:bg-forest hover:text-white active:scale-95 " +
     "min-[860px]:absolute min-[860px]:top-[22%] min-[860px]:z-[4]";
   const chevron = (d: string) => (
     <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">

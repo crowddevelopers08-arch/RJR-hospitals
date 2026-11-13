@@ -15,7 +15,7 @@ const STORIES: { b: [string, string]; s: [string, string] }[] = [
 export default function PatientStories() {
   const { t } = useLang();
   return (
-    <section id="stories" className="section-y bg-white">
+    <section id="stories" className="section-y bg-sand">
       <div className="wrap">
         <SectionHeader
           align="split"
@@ -34,13 +34,13 @@ export default function PatientStories() {
             >
               <span aria-hidden="true" className="absolute inset-3 rounded-[16px] border border-dashed border-[#D9C9AF]" />
               <div className="relative">
-                <span aria-hidden="true" className="mx-auto mb-4 grid h-14 w-14 place-items-center rounded-full bg-white text-crimson shadow-card">
+                <span aria-hidden="true" className="mx-auto mb-4 grid h-14 w-14 place-items-center rounded-full bg-white text-forest shadow-card">
                   <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
                     <rect x="3" y="6" width="13" height="12" rx="2.5" />
                     <path d="M16 10.5l5-3v9l-5-3" />
                   </svg>
                 </span>
-                <b className="display mb-1 block text-[1.15rem] text-crimson">{t(...s.b)}</b>
+                <b className="display mb-1 block text-[1.15rem] text-forest">{t(...s.b)}</b>
                 <span className="text-[.88rem] text-muted">{t(...s.s)}</span>
               </div>
             </div>

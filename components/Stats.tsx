@@ -53,26 +53,39 @@ export default function Stats() {
   const p = useCountUp(ref);
 
   return (
-    <section aria-label="RJR in numbers" className="relative z-[5] -mt-[76px] min-[640px]:-mt-[88px] min-[860px]:-mt-[104px]">
-      <div className="wrap">
+    <section
+      aria-label="RJR in numbers"
+      className="relative z-[5] border-y-2 border-solid border-gold-hover bg-white shadow-[0_12px_30px_-14px_rgba(18,48,31,.25)]"
+    >
+      {/* Full-width strip under the hero. Infinite marquee: the row is rendered twice and slides by -50%
+          so the loop is seamless. Pauses on hover; with reduced motion it becomes a static wrapped row. */}
+      <div>
         <div
           ref={ref}
-          className="grid grid-cols-2 overflow-hidden rounded-[24px] bg-white shadow-card-lg ring-1 ring-line min-[720px]:grid-cols-5"
+          className="group overflow-hidden [mask-image:linear-gradient(90deg,transparent,#000_4%,#000_96%,transparent)]"
         >
-          {STATS.map((s, i) => (
-            <div
-              key={s.en}
-              className={`relative px-3 py-4 text-center min-[640px]:px-4 min-[640px]:py-6 min-[860px]:px-5 min-[860px]:py-9 last:col-span-full min-[720px]:last:col-auto
-                ${i % 2 === 1 ? "border-l border-solid border-line" : ""} ${i < 4 ? "border-b border-solid border-line" : ""}
-                min-[720px]:border-b-0 ${i > 0 ? "min-[720px]:border-l min-[720px]:border-solid min-[720px]:border-line" : "min-[720px]:border-l-0"}`}
-            >
-              <b className="display block text-[clamp(2rem,3.8vw,2.9rem)] leading-none text-crimson tabular-nums">
-                <span>{Math.round(s.n * p)}</span>
-                {s.suffix && <span className="text-gold-ink">{s.suffix}</span>}
-              </b>
-              <span className="mx-auto mt-2 block max-w-[18ch] min-[640px]:mt-3 text-[.86rem] font-medium leading-[1.4] text-muted">{t(s.en, s.ta)}</span>
-            </div>
-          ))}
+          <div className="flex w-max motion-safe:animate-marquee motion-safe:[animation-duration:28s] group-hover:[animation-play-state:paused] motion-reduce:w-full motion-reduce:flex-wrap motion-reduce:justify-center">
+            {[0, 1].map((copy) => (
+              <ul
+                key={copy}
+                aria-hidden={copy === 1 || undefined}
+                className={`m-0 flex list-none p-0 ${copy === 1 ? "motion-reduce:hidden" : "motion-reduce:flex-wrap motion-reduce:justify-center"}`}
+              >
+                {STATS.map((s) => (
+                  <li
+                    key={s.en}
+                    className="flex flex-none flex-col items-center justify-center border-r border-solid border-line px-7 py-3 text-center min-[640px]:px-10 min-[640px]:py-4 min-[860px]:px-14"
+                  >
+                    <b className="display block text-[clamp(1.6rem,3vw,2.2rem)] leading-none text-forest tabular-nums">
+                      <span>{Math.round(s.n * p)}</span>
+                      {s.suffix && <span className="text-gold-ink">{s.suffix}</span>}
+                    </b>
+                    <span className="mt-1.5 block whitespace-nowrap text-[.82rem] font-medium leading-[1.3] text-muted">{t(s.en, s.ta)}</span>
+                  </li>
+                ))}
+              </ul>
+            ))}
+          </div>
         </div>
       </div>
     </section>

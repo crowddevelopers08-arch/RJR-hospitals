@@ -7,11 +7,11 @@ import { useLang } from "@/lib/i18n";
 
 const PIN_HTML =
   '<div class="w-[30px] h-[38px] drop-shadow-[0_3px_4px_rgba(0,0,0,.35)] transition-transform duration-200 [.act_&]:scale-[1.35]">' +
-  '<svg class="block w-[30px] h-[38px]" viewBox="0 0 30 38"><path d="M15 1C7.3 1 1 7.2 1 14.8 1 25 15 37 15 37s14-12 14-22.2C29 7.2 22.7 1 15 1z" fill="#C22220" stroke="#fff" stroke-width="2"/><circle cx="15" cy="14.5" r="5.2" fill="#FDCF3B"/></svg>' +
+  '<svg class="block w-[30px] h-[38px]" viewBox="0 0 30 38"><path d="M15 1C7.3 1 1 7.2 1 14.8 1 25 15 37 15 37s14-12 14-22.2C29 7.2 22.7 1 15 1z" fill="#B3262A" stroke="#fff" stroke-width="2"/><circle cx="15" cy="14.5" r="5.2" fill="#E8C877"/></svg>' +
   "</div>";
 
 const LABEL_CLS =
-  "font-[Poppins,sans-serif] text-[10px] leading-[14px] font-semibold tracking-[.18em] uppercase text-[#8896A7] text-center whitespace-nowrap pointer-events-none";
+  "font-[Poppins,sans-serif] text-[10px] leading-[14px] font-semibold tracking-[.18em] uppercase text-[rgba(232,200,119,.62)] text-center whitespace-nowrap pointer-events-none";
 
 /* Illustrated Tamil Nadu map (outline polygon, no internet tiles) with a pin per branch */
 export default function BranchMap({ active, onSelect }: { active: number; onSelect: (i: number, fromMap: boolean) => void }) {
@@ -54,7 +54,7 @@ export default function BranchMap({ active, onSelect }: { active: number; onSele
         });
         mapRef.current = map;
 
-        L.polygon(TN, { color: "#C22220", weight: 2.2, fillColor: "#FFF8EC", fillOpacity: 1, smoothFactor: 1.1, interactive: false }).addTo(map);
+        L.polygon(TN, { color: "#C9962E", weight: 2.4, fillColor: "#FBF7EE", fillOpacity: 1, smoothFactor: 1.1, interactive: false }).addTo(map);
 
         MAP_LABELS.forEach(([text, la, lo]) => {
           L.marker([la, lo], {
@@ -117,9 +117,9 @@ export default function BranchMap({ active, onSelect }: { active: number; onSele
   }, [active, ready]);
 
   return (
-    <div className="relative min-h-[420px] overflow-hidden rounded-[24px] bg-[#E6EEF3] shadow-card ring-1 ring-line min-[860px]:min-h-[560px]">
+    <div className="relative min-h-[420px] overflow-hidden rounded-[24px] bg-[#173D2E] shadow-card-lg ring-1 ring-[rgba(232,200,119,.4)] min-[860px]:min-h-[560px]">
       <div ref={boxRef} role="application" aria-label="Map of RJR branches in Tamil Nadu" className="z-[1] h-[460px] w-full min-[860px]:h-[560px]" />
-      {failed && <div className="absolute inset-0 grid place-items-center p-6 text-center text-[.95rem] text-muted">{UI[lang].nomap}</div>}
+      {failed && <div className="absolute inset-0 grid place-items-center p-6 text-center text-[.95rem] text-gold">{UI[lang].nomap}</div>}
     </div>
   );
 }

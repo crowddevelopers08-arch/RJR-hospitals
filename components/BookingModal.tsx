@@ -43,7 +43,7 @@ export default function BookingModal() {
         >
           <motion.div
             onClick={closeModal}
-            className="absolute inset-0 bg-[rgba(30,8,8,.6)] backdrop-blur-[6px]"
+            className="absolute inset-0 bg-[rgba(8,24,16,.66)] backdrop-blur-[6px]"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -59,7 +59,7 @@ export default function BookingModal() {
               type="button"
               aria-label="Close"
               onClick={closeModal}
-              className="absolute top-4 right-4 z-[2] grid h-10 w-10 cursor-pointer place-items-center rounded-full border-0 bg-ivory text-crimson ring-1 ring-line transition-colors hover:bg-crimson hover:text-white active:scale-95"
+              className="absolute top-4 right-4 z-[2] grid h-10 w-10 cursor-pointer place-items-center rounded-full border-0 bg-ivory text-forest ring-1 ring-line transition-colors hover:bg-forest hover:text-white active:scale-95"
             >
               <svg viewBox="0 0 16 16" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" aria-hidden="true">
                 <path d="M4 4l8 8M12 4l-8 8" />
