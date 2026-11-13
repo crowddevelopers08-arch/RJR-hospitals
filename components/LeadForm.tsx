@@ -39,7 +39,7 @@ export default function LeadForm({ variant }: { variant: "hero" | "modal" }) {
   const [phone, setPhone] = useState("");
   const [branch, setBranch] = useState("");
   const [concern, setConcern] = useState("");
-  const [consent, setConsent] = useState(false);
+  const [consent, setConsent] = useState(true);
   const [utm, setUtm] = useState<Record<string, string>>({});
   const [errors, setErrors] = useState<Errors>({});
   const [submitted, setSubmitted] = useState(false);
@@ -112,7 +112,7 @@ export default function LeadForm({ variant }: { variant: "hero" | "modal" }) {
         track("generate_lead", { branch, concern, lang });
         setName("");
         setPhone("");
-        setConsent(false);
+        setConsent(true);
         // close the pop-up (if this is it) and go to the thank-you page for the chosen branch
         closeModal();
         router.push(`/thank-you?branch=${encodeURIComponent(branch)}`);
