@@ -52,9 +52,7 @@ export type Doctor = { img: string; en: [string, string, string]; ta: [string, s
 export const DOCS: Doctor[] = [
   { img: "doctors/dr-naveen.webp", en: ["Dr. N. Naveen", "BSMS, M.Sc. (Varma)", ""], ta: ["டாக்டர் N. நவீன்", "BSMS, M.Sc. (Varma)", ""], ini: "NN" },
   { img: "doctors/dr-kavitha.webp", en: ["Dr. J. Kavitha", "BSMS", ""], ta: ["டாக்டர் J. கவிதா", "BSMS", ""], ini: "JK" },
-  { img: "doctors/dr-thatchana-murthy.webp", en: ["Dr. R. Thatchana Murthy", "BNYS", ""], ta: ["டாக்டர் R. தட்சணாமூர்த்தி", "BNYS", ""], ini: "RT" },
-  { img: "", en: ["Dr. S. R. Jeyadurai", "B.Sc., BNYS, DVM, PGDYN", "Founder, RJR Herbal Hospital"], ta: ["டாக்டர் S. R. ஜெயதுரை", "B.Sc., BNYS, DVM, PGDYN", "RJR Herbal Hospital நிறுவனர்"], ini: "SJ" },
-];
+  { img: "doctors/dr-thatchana-murthy.webp", en: ["Dr. R. Thatchana Murthy", "BNYS", ""], ta: ["டாக்டர் R. தட்சணாமூர்த்தி", "BNYS", ""], ini: "RT" },];
 
 /* 37 Tamil Nadu branches. Addresses and phones as listed on rjrherbalhospitals.com. x = approximate pin position. */
 export type Branch = { n: string; t: string; la: number; lo: number; x?: 1; a: string; p: string[] };

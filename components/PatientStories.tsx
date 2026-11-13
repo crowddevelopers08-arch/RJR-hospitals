@@ -4,14 +4,44 @@ import { useLang } from "@/lib/i18n";
 import Carousel from "./Carousel";
 import SectionHeader from "./ui/SectionHeader";
 
-/* TODO: replace each placeholder with a consented patient video (no outcome promises in captions). */
-const STORIES: { b: [string, string]; s: [string, string] }[] = [
-  { b: ["Patient story 1", "நோயாளியின் அனுபவம் 01"], s: ["Add consented video here", "ஒப்புதல் பெற்ற வீடியோவை இங்கே சேர்க்கவும்"] },
-  { b: ["Patient story 2", "நோயாளியின் அனுபவம் 02"], s: ["Add consented video here", "ஒப்புதல் பெற்ற வீடியோவை இங்கே சேர்க்கவும்"] },
-  { b: ["Doctor explains", "மருத்துவர் விளக்கம்"], s: ["Add 30-second doctor video here", "30 வினாடி மருத்துவர் வீடியோவை இங்கே சேர்க்கவும்"] },
+/* Consented patient videos hosted on Cloudinary. `id` is the version/public-id (no extension):
+   Cloudinary transcodes every source (.mp4 or .mov) to a browser-safe MP4, and makes the poster from the first second. */
+const CLD = "https://res.cloudinary.com/t7p14nps/video/upload";
+const STORIES: { id: string; b: [string, string]; s: [string, string] }[] = [
+  {
+    id: "v1794573346/01_JEYAMMAL_RA_EXTEND_1_1_1",
+    b: ["Jeyammal", "ஜெயம்மாள்"],
+    s: ["Rheumatoid arthritis", "முடக்கு வாதம்"],
+  },
+  {
+    id: "v1794573228/02_%E0%AE%A8%E0%AE%B2%E0%AF%8D%E0%AE%B2%E0%AF%81%E0%AE%9A%E0%AE%BE%E0%AE%AE%E0%AE%BF_%E0%AE%95%E0%AF%87%E0%AE%B3%E0%AE%AE%E0%AF%8D%E0%AE%AA%E0%AE%BE%E0%AE%95%E0%AF%8D%E0%AE%95%E0%AE%AE%E0%AF%8D_%E0%AE%9A%E0%AF%8A%E0%AE%B0%E0%AE%BF%E0%AE%AF%E0%AE%BE%E0%AE%B8%E0%AE%BF%E0%AE%B8%E0%AF%8D_1_1",
+    b: ["Nallusamy, Kelambakkam", "நல்லுசாமி, கேளம்பாக்கம்"],
+    s: ["Psoriasis", "சொரியாசிஸ்"],
+  },
+  {
+    id: "v1794572563/01_HEMALATHA_-_ASTHUMA_1_1",
+    b: ["Hemalatha", "ஹேமலதா"],
+    s: ["Asthma", "ஆஸ்துமா"],
+  },
+  {
+    id: "v1794572561/%E0%AE%86%E0%AE%95%E0%AE%BE%E0%AE%B7%E0%AF%8D_%E0%AE%95%E0%AF%81%E0%AE%AE%E0%AF%8D%E0%AE%AE%E0%AE%BF%E0%AE%9F%E0%AE%BF%E0%AE%AA%E0%AF%8D%E0%AE%AA%E0%AF%82%E0%AE%A3%E0%AF%8D%E0%AE%9F%E0%AE%BF_%E0%AE%9A%E0%AF%88%E0%AE%A9%E0%AE%B8%E0%AF%8D_1",
+    b: ["Akash, Gummidipoondi", "ஆகாஷ், கும்மிடிப்பூண்டி"],
+    s: ["Sinus", "சைனஸ்"],
+  },
+  {
+    id: "v1794572559/1%E0%AE%AE%E0%AF%81%E0%AE%B0%E0%AF%81%E0%AE%95%E0%AE%A9%E0%AF%8D_%E0%AE%AE%E0%AF%82%E0%AE%A3%E0%AE%BE%E0%AE%B1%E0%AF%81_%E0%AE%95%E0%AE%BE%E0%AE%B2%E0%AF%8D_%E0%AE%B5%E0%AE%B2%E0%AE%BF_1",
+    b: ["Murugan, Munnar", "முருகன், மூணாறு"],
+    s: ["Leg pain", "கால் வலி"],
+  },
 ];
 
-/* Video slots. Until consented videos exist they read clearly as placeholders, never as playable media. */
+/* Only one story plays at a time: starting a video pauses any other one on the page */
+function pauseOthers(e: React.SyntheticEvent<HTMLVideoElement>) {
+  document.querySelectorAll<HTMLVideoElement>("#stories video").forEach((v) => {
+    if (v !== e.currentTarget && !v.paused) v.pause();
+  });
+}
+
 export default function PatientStories() {
   const { t } = useLang();
   return (
@@ -26,24 +56,21 @@ export default function PatientStories() {
             "எங்கள் நோயாளிகள் தங்களின் அனுபவங்களைப் பகிர்ந்துகொள்கிறார்கள். தனிப்பட்ட அனுபவங்கள்; முடிவுகள் மாறுபடலாம்.",
           ]}
         />
-        <Carousel cols={3}>
+        {/* no auto-advance here, so the carousel never slides away while a video is playing */}
+        <Carousel cols={3} autoplay={false}>
           {STORIES.map((s) => (
-            <div
-              key={s.b[0]}
-              className="relative grid aspect-[4/5] place-items-center overflow-hidden rounded-[22px] bg-[linear-gradient(160deg,#FBF7F1,#F3EADB)] p-6 text-center ring-1 ring-line"
-            >
-              <span aria-hidden="true" className="absolute inset-3 rounded-[16px] border border-dashed border-[#D9C9AF]" />
-              <div className="relative">
-                <span aria-hidden="true" className="mx-auto mb-4 grid h-14 w-14 place-items-center rounded-full bg-white text-forest shadow-card">
-                  <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                    <rect x="3" y="6" width="13" height="12" rx="2.5" />
-                    <path d="M16 10.5l5-3v9l-5-3" />
-                  </svg>
-                </span>
-                <b className="display mb-1 block text-[1.15rem] text-forest">{t(...s.b)}</b>
-                <span className="text-[.88rem] text-muted">{t(...s.s)}</span>
-              </div>
-            </div>
+            <figure key={s.id} className="m-0 overflow-hidden rounded-[22px] bg-white shadow-card ring-1 ring-line">
+              <video
+                className="block aspect-video w-full bg-forest object-cover"
+                src={`${CLD}/q_auto/${s.id}.mp4`}
+                poster={`${CLD}/so_1,q_auto,w_720/${s.id}.jpg`}
+                controls
+                playsInline
+                preload="none"
+                onPlay={pauseOthers}
+                aria-label={`${t(...s.b)}: ${t(...s.s)}`}
+              />
+            </figure>
           ))}
         </Carousel>
       </div>

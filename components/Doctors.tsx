@@ -23,7 +23,7 @@ export default function Doctors() {
         <p className="-mt-2 mb-6 text-[1.05rem] font-semibold text-ink min-[860px]:-mt-6">
           {t("Meet some of our doctors:", "எங்கள் மருத்துவக் குழுவிலிருந்து சிலர்:")}
         </p>
-        <Carousel>
+        <Carousel cols={3}>
           {DOCS.map((d) => (
             <DoctorCard key={d.ini} doc={d} />
           ))}
