@@ -2,14 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Noto_Sans_Tamil, Poppins, Rubik } from "next/font/google";
 import "leaflet/dist/leaflet.css";
 import "./globals.css";
-import { BookingProvider } from "@/lib/booking";
 import { LanguageProvider } from "@/lib/i18n";
-import TopBar from "@/components/TopBar";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import StickyBar from "@/components/StickyBar";
-import BookingModal from "@/components/BookingModal";
-import ScrollToTop from "@/components/ScrollToTop";
 
 /* Same pairing as rjrherbalhospitals.com: Poppins for headings, Rubik for body text.
    Neither has Tamil glyphs, so Noto Sans Tamil fills in for Tamil text. */
@@ -34,17 +27,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${poppins.variable} ${rubik.variable} ${tamil.variable}`}>
       <body>
-        <LanguageProvider>
-          <BookingProvider>
-            <TopBar />
-            <Header />
-            {children}
-            <Footer />
-            <StickyBar />
-            <BookingModal />
-            <ScrollToTop />
-          </BookingProvider>
-        </LanguageProvider>
+        {/* site chrome (header, footer, sticky bar, booking pop-up) lives in app/(site)/layout.tsx */}
+        <LanguageProvider>{children}</LanguageProvider>
       </body>
     </html>
   );

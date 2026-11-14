@@ -9,15 +9,21 @@
    Updating an existing deployment (keeps the same /exec URL):
    Deploy → Manage deployments → ✏️ Edit → Version: New version → Deploy.
 
-   Accepts one payload (app/api/lead/route.ts — hero form + pop-up form):
+   Accepts two payloads:
 
-     action: "lead"
+     action: "lead"      (app/api/lead/route.ts — hero form + pop-up form)
        { timestamp, name, phone, branch, concern, language,
          utm_source, utm_medium, utm_campaign, utm_content, utm_term,
          gclid, fbclid, pageUrl }                                   → "RJR LP Leads"
 
-   The tab is created automatically on the first submission (or run
-   setupSheets() once).
+     action: "feedback"  (app/api/feedback/route.ts — /client-feedback-<branch>)
+       { timestamp, branch, rating, name, email, phone,
+         suggestions, pageUrl }                       → "Feedback - <branch>"
+       One tab per branch (37). `branch` must be one of FEEDBACK_BRANCHES
+       (same names as lib/reviews.ts), so no stray tabs can be created.
+
+   Tabs are created automatically on the first submission. Run setupSheets()
+   once from the editor to create the leads tab and all 37 feedback tabs now.
 
    Columns are exactly the form's fields (plus Timestamp). Rows are written
    by header name instead of fixed column position so the tab can tolerate
@@ -46,8 +52,22 @@ var LEAD_HEADERS = [
 var LEAD_WIDTHS = [190, 200, 160, 220, 240, 100, 140, 140, 180, 160, 140, 180, 180, 300];
 
 var DEFAULT_TAB = 'RJR LP Leads';
-var DEFAULT_HEADER_COLOR = '#9e1a18'; // RJR crimson
-var ALT_ROW_COLOR = '#fbf3f2';
+var DEFAULT_HEADER_COLOR = '#12301f'; // RJR forest
+var ALT_ROW_COLOR = '#f6f1e4';
+
+/* Branch feedback: one tab per branch. Names match lib/reviews.ts (REVIEW_BRANCHES[].name). */
+var FEEDBACK_BRANCHES = [
+  'Ambur', 'Cuddalore', 'Dharmapuri', 'Dindigul', 'Kanchipuram', 'Karaikudi', 'Karur',
+  'Kovilpatti', 'Krishnagiri', 'Kumbakonam', 'Marthandam', 'Mayiladuthurai', 'Nagapattinam',
+  'Nagercoil', 'Pollachi', 'Pudukkottai', 'Ramanathapuram', 'Salem', 'Arumbakkam', 'Coimbatore',
+  'Erode', 'Hosur', 'Sivakasi', 'Pondicherry', 'Thanjavur', 'Tiruvallur', 'T Nagar', 'Tenkasi',
+  'Theni', 'Tirunelveli', 'Thiruvannamalai', 'Trichy', 'Tiruppur', 'Urapakkam (Kilambakkam)',
+  'Vellore', 'Villupuram', 'Virudhachalam'
+];
+var FEEDBACK_PREFIX = 'Feedback - ';
+var FEEDBACK_HEADERS = ['Timestamp', 'Name', 'Phone', 'Email', 'Rating', 'Suggestions', 'Branch', 'Page URL'];
+var FEEDBACK_WIDTHS = [190, 200, 160, 240, 110, 420, 200, 320];
+var FEEDBACK_HEADER_COLOR = '#2e6b52'; // RJR moss, so feedback tabs stand apart from the leads tab
 
 function authorize() {
   var ss = SpreadsheetApp.getActiveSpreadsheet();
@@ -67,8 +87,11 @@ function doPost(e) {
 
     var data = JSON.parse(e.postData.contents);
     var action = data.action || 'lead';
-    if (action !== 'lead') {
+    if (action !== 'lead' && action !== 'feedback') {
       return _json({ error: 'Unknown action: ' + action });
+    }
+    if (action === 'feedback' && FEEDBACK_BRANCHES.indexOf(data.branch) === -1) {
+      return _json({ error: 'Unknown branch: ' + data.branch });
     }
 
     // Serialise writes with the Meta sync so it never reads a half-written row.
@@ -76,6 +99,12 @@ function doPost(e) {
 
     var ss = SpreadsheetApp.getActiveSpreadsheet();
     var ts = data.timestamp || new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' });
+
+    if (action === 'feedback') {
+      var tab = FEEDBACK_PREFIX + data.branch;
+      var fbRow = appendFeedbackRow(getOrCreateFeedbackSheet(ss, tab), data, ts);
+      return _json({ success: true, tab: tab, action: action, row: fbRow });
+    }
 
     var sheet = getOrCreateLeadSheet(ss, DEFAULT_TAB);
     var row = appendLeadRow(sheet, data, ts);
@@ -99,6 +128,18 @@ function setupSheets() {
     _ensureHeaders(sheet, LEAD_HEADERS, DEFAULT_HEADER_COLOR);
     Logger.log('OK: ' + DEFAULT_TAB);
   }
+
+  // one feedback tab per branch
+  FEEDBACK_BRANCHES.forEach(function (branch) {
+    var tab = FEEDBACK_PREFIX + branch;
+    var fb = ss.getSheetByName(tab);
+    if (!fb) {
+      createFeedbackSheet(ss, tab);
+      Logger.log('Created: ' + tab);
+    } else {
+      _ensureHeaders(fb, FEEDBACK_HEADERS, FEEDBACK_HEADER_COLOR);
+    }
+  });
 
   Logger.log('setupSheets complete.');
 }
@@ -201,10 +242,10 @@ function _phone(raw) {
 
 /* ── Sheet setup ─────────────────────────────────────────────── */
 
-function _createSheet(ss, tabName, headers, widths) {
+function _createSheet(ss, tabName, headers, widths, headerColor) {
   var sheet = ss.insertSheet(tabName);
   sheet.appendRow(headers);
-  _styleHeader(sheet, headers.length, DEFAULT_HEADER_COLOR);
+  _styleHeader(sheet, headers.length, headerColor || DEFAULT_HEADER_COLOR);
   _setWidths(sheet, widths);
   sheet.setFrozenRows(1);
   _addFilter(sheet, headers.length);
@@ -217,6 +258,16 @@ function createLeadSheet(ss, tabName) {
 
 function getOrCreateLeadSheet(ss, tabName) {
   return ss.getSheetByName(tabName) || createLeadSheet(ss, tabName);
+}
+
+function createFeedbackSheet(ss, tabName) {
+  var sheet = _createSheet(ss, tabName, FEEDBACK_HEADERS, FEEDBACK_WIDTHS, FEEDBACK_HEADER_COLOR);
+  sheet.getRange(2, FEEDBACK_HEADERS.indexOf('Suggestions') + 1, sheet.getMaxRows() - 1, 1).setWrap(true);
+  return sheet;
+}
+
+function getOrCreateFeedbackSheet(ss, tabName) {
+  return ss.getSheetByName(tabName) || createFeedbackSheet(ss, tabName);
 }
 
 /* ── Actions ─────────────────────────────────────────────────── */
@@ -240,6 +291,26 @@ function appendLeadRow(sheet, data, ts) {
   }, LEAD_HEADERS, DEFAULT_HEADER_COLOR);
 
   _centerColumns(sheet, result.headers, result.row, ['Phone', 'Language']);
+  return result.row;
+}
+
+function appendFeedbackRow(sheet, data, ts) {
+  var rating = Number(data.rating) || 0;
+  var result = _appendByHeaders(sheet, {
+    'Timestamp': ts,
+    'Name': data.name || '',
+    'Phone': _phone(data.phone),
+    'Email': data.email || '',
+    // e.g. "★★☆☆☆ 2/5"; blank rating if the form was opened without one
+    'Rating': rating ? new Array(rating + 1).join('★') + new Array(6 - rating).join('☆') + ' ' + rating + '/5' : 'Not given',
+    'Suggestions': data.suggestions || '',
+    'Branch': data.branch || '',
+    'Page URL': data.pageUrl || ''
+  }, FEEDBACK_HEADERS, FEEDBACK_HEADER_COLOR);
+
+  _centerColumns(sheet, result.headers, result.row, ['Phone', 'Rating']);
+  var sIdx = result.headers.indexOf('Suggestions');
+  if (sIdx !== -1) sheet.getRange(result.row, sIdx + 1).setWrap(true);
   return result.row;
 }
 
